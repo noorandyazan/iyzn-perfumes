@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>iyzn perfumes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">IYZN PERFUMES</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="offer-banner">
+  🎁 Buy 1 Perfume for <strong>10 JOD</strong> & Get the 2nd One <strong>FREE</strong> (Any Type)
+</div>
+
+<div class="container">
+  <h2 style="margin-bottom:20px;">Luxury Fragrances</h2>
+  <p>Premium perfumes crafted for elegance & confidence.</p>
+</div>
+
+<footer>
+  <p>📍 Amman, Jordan</p>
+  <p>
+    <a href="https://www.instagram.com/iyznperfume">Instagram</a> |
+    <a href="https://www.tiktok.com/@iyznperfume">TikTok</a> |
+    <a href="https://x.com/iyznperfume">X</a> |
+    <a href="#">Facebook</a>
+  </p>
+  <p>📧 iyznperfume@gmail.com</p>
+</footer>
+<div id="popup" style="
+position:fixed;
+top:0; left:0;
+width:100%; height:100%;
+background:rgba(0,0,0,0.6);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:9999;">
+  
+  <div style="background:white;padding:40px;text-align:center;max-width:400px;">
+    <h2 style="color:#b89b5e;">Special Offer 🎁</h2>
+    <p>Buy 1 Perfume for <strong>10 JOD</strong><br>
+    Get the 2nd FREE (Any Type)</p>
+    <button onclick="closePopup()">Shop Now</button>
+  </div>
+</div>
+
+<script>
+if (!localStorage.getItem("offerSeen")) {
+  setTimeout(() => {
+    document.getElementById("popup").style.display = "flex";
+  }, 1500);
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+  localStorage.setItem("offerSeen", "yes");
+}
+</script>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/962795748326?text=Hello%20I%20want%20to%20order%20from%20iyzn%20perfumes"
+   class="whatsapp-float"
+   target="_blank">
+   💬
+</a>
+</body>
+</html>
