@@ -7,70 +7,131 @@
 </head>
 <body>
 
+<!-- Header -->
 <header>
   <div class="logo">IYZN PERFUMES</div>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
+<!-- Offer Banner -->
 <div class="offer-banner">
   🎁 Buy 1 Perfume for <strong>10 JOD</strong> & Get the 2nd One <strong>FREE</strong> (Any Type)
 </div>
 
-<div class="container">
-  <h2 style="margin-bottom:20px;">Luxury Fragrances</h2>
-  <p>Premium perfumes crafted for elegance & confidence.</p>
-</div>
+<!-- Home -->
+<section id="home" class="container">
+  <h1 class="hero-text">
+    iyzn perfumes…<br>
+    <span>We bet on quality before price.</span>
+  </h1>
+  <p>Luxury fragrances crafted for elegance & confidence.</p>
+</section>
 
-<footer>
+<!-- Products -->
+<section id="products" class="container">
+  <h2 style="margin-bottom:30px;">Our Collection</h2>
+
+  <div class="products">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
+      <span class="tag men">Men</span>
+      <h3>Golden Oud</h3>
+      <div class="price">6 JOD</div>
+      <button onclick="addToCart('Golden Oud',6)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f">
+      <span class="tag women">Women</span>
+      <h3>Velvet Rose</h3>
+      <div class="price">5 JOD</div>
+      <button onclick="addToCart('Velvet Rose',5)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
+      <span class="tag unisex">Unisex</span>
+      <h3>Amber Sky</h3>
+      <div class="price">7 JOD</div>
+      <button onclick="addToCart('Amber Sky',7)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6">
+      <span class="tag men">Men</span>
+      <h3>Black Musk</h3>
+      <div class="price">6 JOD</div>
+      <button onclick="addToCart('Black Musk',6)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539">
+      <span class="tag women">Women</span>
+      <h3>Floral Mist</h3>
+      <div class="price">5 JOD</div>
+      <button onclick="addToCart('Floral Mist',5)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1590736969955-71cc94801759">
+      <span class="tag unisex">Unisex</span>
+      <h3>Pure Gold</h3>
+      <div class="price">7 JOD</div>
+      <button onclick="addToCart('Pure Gold',7)">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="container">
+  <h2>About iyzn perfumes</h2>
+  <p style="max-width:700px;margin-top:20px;">
+    iyzn perfumes is a Jordan-based perfume brand offering luxury fragrances
+    for men, women, and unisex tastes.
+  </p>
+  <p style="max-width:700px;margin-top:15px;">
+    Our promise is simple: <strong>quality before price.</strong>
+  </p>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="container">
+  <h2>Contact Us</h2>
   <p>📍 Amman, Jordan</p>
-  <p>
+  <p>📧 iyznperfume@gmail.com</p>
+  <p>📱 WhatsApp: +962 79 574 8326</p>
+
+  <p style="margin-top:15px;">
     <a href="https://www.instagram.com/iyznperfume">Instagram</a> |
     <a href="https://www.tiktok.com/@iyznperfume">TikTok</a> |
     <a href="https://x.com/iyznperfume">X</a> |
     <a href="#">Facebook</a>
   </p>
-  <p>📧 iyznperfume@gmail.com</p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>Payment Methods: Visa • MasterCard • AMEX • Cash • Tabby • Tamara</p>
+  <p>iyzn perfumes © 2026</p>
 </footer>
-<div id="popup" style="
-position:fixed;
-top:0; left:0;
-width:100%; height:100%;
-background:rgba(0,0,0,0.6);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:9999;">
-  
-  <div style="background:white;padding:40px;text-align:center;max-width:400px;">
-    <h2 style="color:#b89b5e;">Special Offer 🎁</h2>
-    <p>Buy 1 Perfume for <strong>10 JOD</strong><br>
-    Get the 2nd FREE (Any Type)</p>
-    <button onclick="closePopup()">Shop Now</button>
-  </div>
-</div>
 
-<script>
-if (!localStorage.getItem("offerSeen")) {
-  setTimeout(() => {
-    document.getElementById("popup").style.display = "flex";
-  }, 1500);
-}
-
-function closePopup() {
-  document.getElementById("popup").style.display = "none";
-  localStorage.setItem("offerSeen", "yes");
-}
-</script>
 <!-- WhatsApp Floating Button -->
 <a href="https://wa.me/962795748326?text=Hello%20I%20want%20to%20order%20from%20iyzn%20perfumes"
-   class="whatsapp-float"
-   target="_blank">
-   💬
-</a>
+   class="whatsapp-float" target="_blank">💬</a>
+
+<!-- Cart Script -->
+<script>
+let cart = [];
+function addToCart(name, price) {
+  cart.push({name, price});
+  alert(name + " added to cart");
+}
+</script>
+
 </body>
 </html>
