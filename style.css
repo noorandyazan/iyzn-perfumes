@@ -269,4 +269,88 @@ body {
 .section-title.light {
   color: #d4af37;
 }
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Moving Offer Bar */
+.top-marquee {
+  background: #111;
+  color: #d4af37;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 12px 0;
+}
+
+.marquee-content {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 18s linear infinite;
+  font-weight: 500;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Hero */
+.hero {
+  height: 85vh;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.arabic-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.sub-text {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #d4af37;
+}
+
+.cta-btn {
+  padding: 14px 35px;
+  background: #d4af37;
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.cta-btn:hover {
+  background: white;
+}
+
+/* Section Title */
+.section-title {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  margin-bottom: 40px;
+}
+
+.dark-section {
+  background: #111;
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.section-title.light {
+  color: #d4af37;
+}
+
 

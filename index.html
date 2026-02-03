@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>iyzn perfumes</title>
+<meta charset="UTF-8">
+<title>iyzn perfumes</title>
 
-  <!-- Luxury Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- Moving Offer Bar -->
+<div class="top-marquee">
+  <div class="marquee-content">
+    🎁 Buy 1 Perfume for 10 JOD & Get the 2nd FREE — Luxury Collection Available Now — Fast Delivery in Amman —
+  </div>
+</div>
 
 <header>
   <div class="logo">IYZN PERFUMES</div>
@@ -21,16 +27,16 @@
   </nav>
 </header>
 
-<div class="offer-banner">
-  Buy 1 Perfume for <strong>10 JOD</strong> & Get the 2nd FREE
-</div>
-
-<!-- HERO SECTION -->
+<!-- HERO -->
 <section id="home" class="hero">
   <div class="hero-content">
-    <h1>Luxury Redefined</h1>
-    <p class="arabic-slogan">عطور iyzn... نراهن على الجودة قبل السعر</p>
-    <a href="#products" class="cta-btn">Shop Now</a>
+    <h1 class="arabic-main">
+      عطور iyzn... نراهن على الجودة قبل السعر
+    </h1>
+    <p class="sub-text">
+      Premium fragrances crafted for elegance & confidence
+    </p>
+    <a href="#products" class="cta-btn">Shop Collection</a>
   </div>
 </section>
 
@@ -39,46 +45,64 @@
   <h2 class="section-title">Our Collection</h2>
 
   <div class="products">
+
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
-      <span class="tag men">Men</span>
+      <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539">
       <h3>Golden Oud</h3>
       <div class="price">6 JOD</div>
-      <button onclick="addToCart('Golden Oud',6)">Add to Cart</button>
+      <button>Add to Cart</button>
     </div>
 
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f">
-      <span class="tag women">Women</span>
+      <img src="https://images.unsplash.com/photo-1590736969955-71cc94801759">
       <h3>Velvet Rose</h3>
       <div class="price">5 JOD</div>
-      <button onclick="addToCart('Velvet Rose',5)">Add to Cart</button>
+      <button>Add to Cart</button>
     </div>
 
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
-      <span class="tag unisex">Unisex</span>
+      <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de">
       <h3>Amber Sky</h3>
       <div class="price">7 JOD</div>
-      <button onclick="addToCart('Amber Sky',7)">Add to Cart</button>
+      <button>Add to Cart</button>
     </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
+      <h3>Black Musk</h3>
+      <div class="price">6 JOD</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1629198735660-e39ea93f5a0f">
+      <h3>Floral Mist</h3>
+      <div class="price">5 JOD</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108">
+      <h3>Pure Gold</h3>
+      <div class="price">7 JOD</div>
+      <button>Add to Cart</button>
+    </div>
+
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="dark-section">
   <div class="container">
     <h2 class="section-title light">About iyzn perfumes</h2>
     <p>
-      A Jordan-based perfume brand crafted for elegance, confidence, and timeless luxury.
-      We focus on premium quality at accessible prices.
+      A luxury fragrance brand based in Amman, Jordan.
+      We focus on premium quality with accessible pricing.
     </p>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="container">
-  <h2 class="section-title">Contact Us</h2>
+  <h2 class="section-title">Contact</h2>
   <p>📍 Amman, Jordan</p>
   <p>📧 iyznperfume@gmail.com</p>
   <p>📱 WhatsApp: +962 79 574 8326</p>
@@ -90,15 +114,7 @@
 </footer>
 
 <a href="https://wa.me/962795748326?text=Hello%20I%20want%20to%20order%20from%20iyzn%20perfumes"
-   class="whatsapp-float" target="_blank">💬</a>
-
-<script>
-let cart = [];
-function addToCart(name, price) {
-  cart.push({name, price});
-  alert(name + " added to cart");
-}
-</script>
+class="whatsapp-float" target="_blank">💬</a>
 
 </body>
 </html>
