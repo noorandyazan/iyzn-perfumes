@@ -8,14 +8,17 @@
 body {
   background: #ffffff;
   color: #111;
+  line-height: 1.6;
 }
 
+/* Header */
 header {
   padding: 20px 60px;
   border-bottom: 1px solid #eee;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -30,8 +33,14 @@ nav a {
   text-decoration: none;
   color: #111;
   font-weight: 500;
+  transition: 0.3s;
 }
 
+nav a:hover {
+  color: #b89b5e;
+}
+
+/* Offer Banner */
 .offer-banner {
   background: linear-gradient(90deg, #d4af37, #b89b5e);
   color: white;
@@ -40,10 +49,27 @@ nav a {
   font-size: 18px;
 }
 
+/* Layout */
 .container {
   padding: 60px;
 }
 
+/* Hero */
+.hero-text {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #111;
+  line-height: 1.4;
+}
+
+.hero-text span {
+  color: #b89b5e;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+/* Products */
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -55,10 +81,11 @@ nav a {
   padding: 20px;
   text-align: center;
   transition: 0.3s;
+  background: #fff;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
@@ -66,6 +93,7 @@ nav a {
   width: 100%;
   height: 280px;
   object-fit: cover;
+  border-radius: 4px;
 }
 
 .card h3 {
@@ -76,17 +104,58 @@ nav a {
 .price {
   color: #b89b5e;
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
+/* Buttons */
 button {
-  padding: 10px 20px;
+  padding: 10px 22px;
   border: none;
   background: #b89b5e;
   color: white;
   cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
 }
 
+button:hover {
+  background: #a6894d;
+  transform: translateY(-2px);
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: white;
+  border-radius: 20px;
+}
+
+.men { background: #111; }
+.women { background: #b89b5e; }
+.unisex { background: #777; }
+
+/* Forms (Checkout) */
+form input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #b89b5e;
+}
+
+form label {
+  font-size: 14px;
+}
+
+/* Footer */
 footer {
   margin-top: 80px;
   padding: 40px;
@@ -100,26 +169,8 @@ footer a {
   margin: 0 10px;
   text-decoration: none;
 }
-.tag {
-  display: inline-block;
-  padding: 5px 12px;
-  font-size: 12px;
-  margin-bottom: 10px;
-  color: white;
-}
 
-.men {
-  background: #111;
-}
-
-.women {
-  background: #b89b5e;
-}
-
-.unisex {
-  background: #777;
-}
-
+/* WhatsApp */
 .whatsapp-float {
   position: fixed;
   bottom: 25px;
@@ -132,8 +183,90 @@ footer a {
   text-decoration: none;
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   z-index: 9999;
+  transition: 0.3s;
 }
 
 .whatsapp-float:hover {
   transform: scale(1.1);
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  header {
+    padding: 20px;
+  }
+
+  nav a {
+    margin-left: 15px;
+  }
+
+  .container {
+    padding: 30px;
+  }
+
+  .hero-text {
+    font-size: 28px;
+  }
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* HERO */
+.hero {
+  height: 85vh;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+              url('https://images.unsplash.com/photo-1600180758890-6b94519a8ba6');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.arabic-slogan {
+  font-size: 22px;
+  margin-bottom: 30px;
+  color: #d4af37;
+  font-weight: 500;
+}
+
+.cta-btn {
+  padding: 14px 35px;
+  background: #d4af37;
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.cta-btn:hover {
+  background: white;
+}
+
+.section-title {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.dark-section {
+  background: #111;
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.section-title.light {
+  color: #d4af37;
+}
+
