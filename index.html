@@ -1,78 +1,861 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IYZN Perfumes</title>
-
-<!-- Luxury Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cairo:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IYZN Perfumes - متجر العطور الفاخرة في الأردن</title>
+    <meta name="description" content="متجر IYZN Perfumes للعطور الفاخرة في عمان - الأردن. عطور بأسعار مميزة تبدأ من 5 دنانير. نراهن على الجودة قبل السعر">
+    <meta name="keywords" content="عطور, عطور أردنية, متجر عطور, IYZN perfumes, عطور عمان, عطور رخيصة, عطور فاخرة">
+    <meta name="author" content="IYZN Perfumes">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fffdf0',
+                            100: '#fef9c3',
+                            200: '#fef08a',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                            800: '#854d0e',
+                            900: '#713f12',
+                        },
+                        primary: '#ffffff',
+                        secondary: '#f8f9fa',
+                        accent: '#d4af37',
+                        dark: '#1a1a1a'
+                    },
+                    fontFamily: {
+                        'arabic': ['"Noto Sans Arabic"', 'sans-serif'],
+                        'cairo': ['Cairo', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Cairo', 'Noto Sans Arabic', sans-serif;
+        }
+        
+        .special-offer-banner {
+            background: linear-gradient(90deg, #000000 0%, #1a1a1a 100%);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.95; }
+            50% { opacity: 1; }
+            100% { opacity: 0.95; }
+        }
+        
+        .perfume-card {
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .perfume-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
+            border-color: #eab308;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #fef9c3 0%, #fde047 50%, #eab308 100%);
+        }
+        
+        .gold-border {
+            border: 2px solid #eab308;
+        }
+        
+        .price-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #eab308;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9)), url('https://picsum.photos/1920/600?random=1&blur=2');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #eab308, transparent);
+            border-radius: 3px;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: #eab308;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1) translateY(-3px);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body>
-
-<header>
-  <div class="logo">IYZN PERFUMES</div>
-</header>
-
-<!-- HERO SECTION -->
-<section class="hero">
-
-  <h1 class="arabic-title">
-    عطور iyzn... نراهن على الجودة قبل السعر
-  </h1>
-
-  <div class="hero-image">
-    <!-- صورة عطر احترافية -->
-    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539" alt="Luxury Perfume">
-  </div>
-
-  <!-- Moving Offer Bar -->
-  <div class="offer-bar">
-    <div class="offer-track">
-      BUY 1 PERFUME FOR 10 JOD & GET THE 2ND FREE — PREMIUM QUALITY — FAST DELIVERY —
-      BUY 1 PERFUME FOR 10 JOD & GET THE 2ND FREE — PREMIUM QUALITY — FAST DELIVERY —
-    </div>
-  </div>
-
-</section>
-
-<!-- PRODUCTS SECTION -->
-<section class="products-section">
-
-  <h2 class="section-title">Our Collection</h2>
-
-  <div class="products">
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f">
-      <h3>Golden Oud</h3>
-      <p>6 JOD</p>
-      <button>Shop Now</button>
+<body class="min-h-screen bg-white text-gray-800">
+    <!-- شريط العرض الخاص -->
+    <div class="special-offer-banner py-4 px-4">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-3 md:mb-0">
+                    <span class="bg-gold-500 text-black text-sm font-bold py-1 px-3 rounded-full mr-3 animate-pulse">🔥 عرض حصري</span>
+                    <span class="text-white font-bold text-xl">اشتري عطر بـ 10 دنانير واحصل على الثاني مجاناً من أي نوع تريده!</span>
+                </div>
+                <a href="#products" class="bg-gold-500 text-black font-bold py-2 px-8 rounded-lg hover:bg-gold-600 transition duration-300 transform hover:scale-105 shadow-lg">
+                    🛍️ تسوق العرض الآن
+                </a>
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
-      <h3>Velvet Rose</h3>
-      <p>5 JOD</p>
-      <button>Shop Now</button>
-    </div>
+    <!-- الهيدر والتنقل -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center py-4">
+                <!-- الشعار -->
+                <div class="flex items-center mb-4 md:mb-0">
+                    <div class="w-12 h-12 gold-gradient rounded-full flex items-center justify-center mr-3">
+                        <span class="text-2xl font-bold text-dark">IYZN</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-dark">IYZN Perfumes</h1>
+                        <p class="text-gold-600 text-sm">عطور فاخرة - عمان، الأردن</p>
+                    </div>
+                </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1590736969955-71cc94801759">
-      <h3>Pure Gold</h3>
-      <p>7 JOD</p>
-      <button>Shop Now</button>
-    </div>
+                <!-- شعار الجودة -->
+                <div class="mb-4 md:mb-0">
+                    <div class="bg-gold-50 gold-border rounded-lg p-3 text-center">
+                        <p class="text-dark font-bold text-lg">عطور IYZN... نراهن على الجودة قبل السعر</p>
+                    </div>
+                </div>
 
-  </div>
+                <!-- معلومات الاتصال -->
+                <div class="text-center md:text-right">
+                    <div class="flex items-center justify-center md:justify-end mb-2">
+                        <i class="fas fa-map-marker-alt text-gold-600 ml-2"></i>
+                        <span class="text-dark font-medium">عمان، الأردن</span>
+                    </div>
+                    <div class="flex items-center justify-center md:justify-end">
+                        <i class="fas fa-money-bill-wave text-gold-600 ml-2"></i>
+                        <span class="text-dark font-medium">العملة: الدينار الأردني (د.أ)</span>
+                    </div>
+                </div>
+            </div>
 
-</section>
+            <!-- شريط التنقل -->
+            <nav class="border-t border-b border-gray-200 py-3">
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#home" class="nav-link text-dark font-medium hover:text-gold-600">الرئيسية</a>
+                    <a href="#products" class="nav-link text-dark font-medium hover:text-gold-600">منتجاتنا</a>
+                    <a href="#offers" class="nav-link text-dark font-medium hover:text-gold-600">العروض</a>
+                    <a href="#about" class="nav-link text-dark font-medium hover:text-gold-600">من نحن</a>
+                    <a href="#contact" class="nav-link text-dark font-medium hover:text-gold-600">اتصل بنا</a>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-<footer>
-  iyzn perfumes © 2026
-</footer>
+    <!-- القسم الرئيسي -->
+    <main>
+        <!-- قسم الهيرو -->
+        <section id="home" class="hero-section py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0">
+                        <h2 class="text-4xl md:text-5xl font-bold text-dark mb-6">
+                            اكتشف عالم <span class="text-gold-600">العطور الفاخرة</span>
+                        </h2>
+                        <p class="text-xl text-gray-600 mb-8">
+                            في <span class="font-bold text-gold-700">IYZN Perfumes</span>، نقدم لك أجود أنواع العطور بأسعار تنافسية تبدأ من <span class="font-bold text-gold-700">5 دنانير</span> فقط!
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#products" class="bg-dark text-white font-bold py-3 px-8 rounded-lg hover:bg-gold-700 transition duration-300 transform hover:scale-105">
+                                تصفح المنتجات
+                            </a>
+                            <a href="#offers" class="bg-gold-500 text-dark font-bold py-3 px-8 rounded-lg hover:bg-gold-600 transition duration-300 border-2 border-gold-500">
+                                العروض الحصرية
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="relative">
+                            <img src="https://picsum.photos/600/400?random=2" alt="مجموعة عطور IYZN الفاخرة" class="rounded-2xl shadow-2xl w-full">
+                            <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl">
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-gold-600 mb-2">5-7 د.أ</div>
+                                    <div class="text-dark font-medium">أسعارنا تبدأ من</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- قسم المنتجات -->
+        <section id="products" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold text-dark mb-4">منتجاتنا المميزة</h2>
+                    <p class="text-gray-600 text-lg">اختر من بين مجموعة واسعة من العطور الفاخرة بأسعار تنافسية</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- المنتج 1 -->
+                    <div class="perfume-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="relative">
+                            <div class="price-badge">5 د.أ</div>
+                            <img src="https://picsum.photos/400/300?random=3" alt="عطر IYZN كلاسيك" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-dark mb-2">IYZN كلاسيك</h3>
+                            <p class="text-gray-600 mb-4">عطر كلاسيكي يناسب جميع المناسبات برائحة خشبية فاخرة</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-gold-600">5 د.أ</span>
+                                <button class="bg-dark text-white font-bold py-2 px-6 rounded-lg hover:bg-gold-700 transition duration-300">
+                                    أضف للسلة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- المنتج 2 -->
+                    <div class="perfume-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="relative">
+                            <div class="price-badge">6 د.أ</div>
+                            <img src="https://picsum.photos/400/300?random=4" alt="عطر IYZN رويال" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-dark mb-2">IYZN رويال</h3>
+                            <p class="text-gray-600 mb-4">عطر ملكي برائحة الزهور والمسك يناسب المناسبات الخاصة</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-gold-600">6 د.أ</span>
+                                <button class="bg-dark text-white font-bold py-2 px-6 rounded-lg hover:bg-gold-700 transition duration-300">
+                                    أضف للسلة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- المنتج 3 -->
+                    <div class="perfume-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="relative">
+                            <div class="price-badge">7 د.أ</div>
+                            <img src="https://picsum.photos/400/300?random=5" alt="عطر IYZن بريميوم" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-dark mb-2">IYZN بريميوم</h3>
+                            <p class="text-gray-600 mb-4">عطر فاخر برائحة العود والورد مع بقاء طويل المدى</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-gold-600">7 د.أ</span>
+                                <button class="bg-dark text-white font-bold py-2 px-6 rounded-lg hover:bg-gold-700 transition duration-300">
+                                    أضف للسلة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- المنتج 4 -->
+                    <div class="perfume-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="relative">
+                            <div class="price-badge">5 د.أ</div>
+                            <img src="https://picsum.photos/400/300?random=6" alt="عطر IYZN فرش" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-dark mb-2">IYZN فرش</h3>
+                            <p class="text-gray-600 mb-4">عطر منعش برائحة الحمضيات مثالي للاستخدام اليومي</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-gold-600">5 د.أ</span>
+                                <button class="bg-dark text-white font-bold py-2 px-6 rounded-lg hover:bg-gold-700 transition duration-300">
+                                    أضف للسلة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- المنتج 5 -->
+                    <div class="perfume-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="relative">
+                            <div class="price-badge">6 د.أ</div>
+                            <img src="https://picsum.photos/400/300?random=7" alt="عطر IYZن سيدرا" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-dark mb-2">IYZN سيدرا</h3>
+                            <p class="text-gray-600 mb-4">عطر نسائي برائحة الفواكه والزهور يناسب السيدات الأنيقات</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-gold-600">6 د.أ</span>
+                                <button class="bg-dark text-white font-bold py-2 px-6 rounded-lg hover:bg-gold-700 transition duration-300">
+                                    أضف للسلة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- المنتج 6 -->
+                    <div class="perfume-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="relative">
+                            <div class="price-badge">7 د.أ</div>
+                            <img src="https://picsum.photos/400/300?random=8" alt="عطر IYZن بلاك" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-dark mb-2">IYZN بلاك</h3>
+                            <p class="text-gray-600 mb-4">عطر غامق وجذاب برائحة التوابل والخشب النادر</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-gold-600">7 د.أ</span>
+                                <button class="bg-dark text-white font-bold py-2 px-6 rounded-lg hover:bg-gold-700 transition duration-300">
+                                    أضف للسلة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم العروض الخاصة -->
+        <section id="offers" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold text-dark mb-4">العروض الحصرية</h2>
+                    <p class="text-gray-600 text-lg">استفد من عروضنا المميزة واحصل على أفضل الصفقات</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- العرض الرئيسي -->
+                    <div class="bg-gradient-to-r from-dark to-gray-900 rounded-2xl p-8 text-white">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-gold-500 text-dark font-bold text-2xl py-2 px-4 rounded-lg mr-4">عرض خاص</div>
+                            <h3 class="text-2xl font-bold">اشتري عطر بـ 10 دنانير والثاني مجاناً!</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6 text-lg">
+                            احصل على عطرين من أي نوع تريده مقابل 10 دنانير فقط! اختر عطرك المفضل واحصل على الثاني مجاناً من أي نوع آخر.
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-gold-400 ml-3"></i>
+                                <span>اختر أي عطرين من مجموعتنا</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-gold-400 ml-3"></i>
+                                <span>ادفع 10 دنانير فقط</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-gold-400 ml-3"></i>
+                                <span>توصيل مجاني في عمان</span>
+                            </li>
+                        </ul>
+                        <button class="bg-gold-500 text-dark font-bold py-3 px-8 rounded-lg hover:bg-gold-600 transition duration-300 w-full">
+                            استفد من العرض الآن
+                        </button>
+                    </div>
+
+                    <!-- عرض آخر -->
+                    <div class="bg-gradient-to-r from-gold-100 to-gold-50 rounded-2xl p-8 border-2 border-gold-200">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-dark text-white font-bold text-2xl py-2 px-4 rounded-lg mr-4">توفير</div>
+                            <h3 class="text-2xl font-bold text-dark">خصم 20% على 3 عطور أو أكثر</h3>
+                        </div>
+                        <p class="text-gray-700 mb-6 text-lg">
+                            اشترِ 3 عطور أو أكثر واحصل على خصم 20% على إجمالي المشتريات. مثالي للهدايا والمجموعات.
+                        </p>
+                        <div class="bg-white rounded-lg p-4 mb-6">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">سعر 3 عطور عادية:</span>
+                                <span class="text-xl font-bold text-dark">18 د.أ</span>
+                            </div>
+                            <div class="flex justify-between items-center mt-2">
+                                <span class="text-gray-600">بعد الخصم:</span>
+                                <span class="text-2xl font-bold text-gold-600">14.4 د.أ</span>
+                            </div>
+                        </div>
+                        <button class="bg-dark text-white font-bold py-3 px-8 rounded-lg hover:bg-gold-700 transition duration-300 w-full">
+                            تسوق العروض
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم من نحن -->
+        <section id="about" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                        <h2 class="section-title text-3xl md:text-4xl font-bold text-dark mb-6">من نحن</h2>
+                        <div class="bg-white p-8 rounded-2xl shadow-lg mb-8">
+                            <p class="text-gray-700 text-lg mb-6">
+                                <span class="font-bold text-gold-600">IYZN Perfumes</span> هو متجر عطور أردني متخصص في تقديم أجود أنواع العطور بأسعار تنافسية تبدأ من 5 دنانير فقط.
+                            </p>
+                            <p class="text-gray-700 text-lg mb-6">
+                                نؤمن بأن الجودة لا تعني السعر المرتفع، لذلك <span class="font-bold text-dark">"نراهن على الجودة قبل السعر"</span> في كل منتج نقدمه.
+                            </p>
+                            <div class="flex items-center mt-8">
+                                <div class="w-16 h-16 gold-gradient rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-award text-2xl text-dark"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-dark mb-1">جودة مضمونة</h4>
+                                    <p class="text-gray-600">جميع منتجاتنا تخضع لفحص الجودة قبل الشحن</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <img src="https://picsum.photos/600/400?random=9" alt="متجر IYZN Perfumes في عمان" class="rounded-2xl shadow-xl w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم اتصل بنا -->
+        <section id="contact" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold text-dark mb-4">تواصل معنا</h2>
+                    <p class="text-gray-600 text-lg">نحن هنا لخدمتك في أي وقت</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- معلومات الاتصال -->
+                    <div class="bg-gray-50 rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-dark mb-6">معلومات المتجر</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-gold-100 p-3 rounded-lg ml-4">
+                                    <i class="fas fa-map-marker-alt text-gold-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-dark mb-1">الموقع</h4>
+                                    <p class="text-gray-600">عمان، الأردن</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-gold-100 p-3 rounded-lg ml-4">
+                                    <i class="fas fa-envelope text-gold-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-dark mb-1">البريد الإلكتروني</h4>
+                                    <p class="text-gray-600">iyznperfume@gmail.com</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-gold-100 p-3 rounded-lg ml-4">
+                                    <i class="fas fa-money-bill-wave text-gold-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-dark mb-1">العملة</h4>
+                                    <p class="text-gray-600">الدينار الأردني (د.أ)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- وسائل التواصل الاجتماعي -->
+                        <div class="mt-8">
+                            <h4 class="text-lg font-bold text-dark mb-4">تابعنا على وسائل التواصل</h4>
+                            <div class="flex space-x-4 space-x-reverse">
+                                <a href="https://x.com/iyznperfume" target="_blank" class="social-icon bg-dark text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-gray-800">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.tiktok.com/@iyznperfume" target="_blank" class="social-icon bg-dark text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-gray-800">
+                                    <i class="fab fa-tiktok"></i>
+                                </a>
+                                <a href="https://www.instagram.com/iyznperfume" target="_blank" class="social-icon bg-dark text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-gray-800">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-icon bg-dark text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-gray-800">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- نموذج الاتصال -->
+                    <div class="bg-white rounded-2xl p-8 border-2 border-gray-100">
+                        <h3 class="text-2xl font-bold text-dark mb-6">أرسل لنا رسالة</h3>
+                        <form id="contactForm" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">الاسم الكامل</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-100" required>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2">البريد الإلكتروني</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-100" required>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-gray-700 mb-2">الرسالة</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-100" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-gold-500 text-dark font-bold py-3 px-8 rounded-lg hover:bg-gold-600 transition duration-300">
+                                إرسال الرسالة
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- الفوتر -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- معلومات المتجر -->
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 gold-gradient rounded-full flex items-center justify-center mr-3">
+                            <span class="text-2xl font-bold text-dark">IYZN</span>
+                        </div>
+                        <h3 class="text-2xl font-bold">IYZN Perfumes</h3>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        متجر عطور أردني فاخر يقدم أجود أنواع العطور بأسعار تنافسية. نراهن على الجودة قبل السعر.
+                    </p>
+                    <p class="text-gold-400 font-bold">
+                        <i class="fas fa-map-marker-alt ml-2"></i>
+                        عمان، الأردن
+                    </p>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">روابط سريعة</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-300 hover:text-gold-400 transition duration-300">الرئيسية</a></li>
+                        <li><a href="#products" class="text-gray-300 hover:text-gold-400 transition duration-300">المنتجات</a></li>
+                        <li><a href="#offers" class="text-gray-300 hover:text-gold-400 transition duration-300">العروض</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-gold-400 transition duration-300">من نحن</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-gold-400 transition duration-300">اتصل بنا</a></li>
+                    </ul>
+                </div>
+
+                <!-- وسائل التواصل -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">تواصل معنا</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-gold-400 ml-3"></i>
+                            <span>iyznperfume@gmail.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-money-bill-wave text-gold-400 ml-3"></i>
+                            <span>العملة: الدينار الأردني (د.أ)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h5 class="text-lg font-bold mb-4">تابعنا على</h5>
+                        <div class="flex space-x-4 space-x-reverse">
+                            <a href="https://x.com/iyznperfume" target="_blank" class="bg-gray-800 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-gold-600 transition duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@iyznperfume" target="_blank" class="bg-gray-800 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-gold-600 transition duration-300">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="https://www.instagram.com/iyznperfume" target="_blank" class="bg-gray-800 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-gold-600 transition duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="bg-gray-800 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-gold-600 transition duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2024 IYZN Perfumes. جميع الحقوق محفوظة. | 
+                    <span class="text-gold-400 font-bold">عطور IYZN... نراهن على الجودة قبل السعر</span>
+                </p>
+                <p class="text-gray-500 text-sm mt-2">
+                    الأسعار تبدأ من 5 دنانير وتصل إلى 7 دنانير فقط
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر الواتساب العائم -->
+    <a href="https://wa.me/962790000000?text=مرحباً، أريد الاستفسار عن عطور IYZN" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // بيانات المنتجات
+        const products = [
+            {
+                "id": 1,
+                "name": "IYZN كلاسيك",
+                "description": "عطر كلاسيكي يناسب جميع المناسبات برائحة خشبية فاخرة",
+                "price": 5,
+                "image": "https://picsum.photos/400/300?random=3",
+                "category": "رجالي"
+            },
+            {
+                "id": 2,
+                "name": "IYZN رويال",
+                "description": "عطر ملكي برائحة الزهور والمسك يناسب المناسبات الخاصة",
+                "price": 6,
+                "image": "https://picsum.photos/400/300?random=4",
+                "category": "نسائي"
+            },
+            {
+                "id": 3,
+                "name": "IYZN بريميوم",
+                "description": "عطر فاخر برائحة العود والورد مع بقاء طويل المدى",
+                "price": 7,
+                "image": "https://picsum.photos/400/300?random=5",
+                "category": "رجالي"
+            },
+            {
+                "id": 4,
+                "name": "IYZN فرش",
+                "description": "عطر منعش برائحة الحمضيات مثالي للاستخدام اليومي",
+                "price": 5,
+                "image": "https://picsum.photos/400/300?random=6",
+                "category": "رجالي"
+            },
+            {
+                "id": 5,
+                "name": "IYZN سيدرا",
+                "description": "عطر نسائي برائحة الفواكه والزهور يناسب السيدات الأنيقات",
+                "price": 6,
+                "image": "https://picsum.photos/400/300?random=7",
+                "category": "نسائي"
+            },
+            {
+                "id": 6,
+                "name": "IYZN بلاك",
+                "description": "عطر غامق وجذاب برائحة التوابل والخشب النادر",
+                "price": 7,
+                "image": "https://picsum.photos/400/300?random=8",
+                "category": "رجالي"
+            }
+        ];
+
+        // بيانات العروض
+        const offers = [
+            {
+                "id": 1,
+                "title": "اشتري عطر بـ 10 دنانير والثاني مجاناً!",
+                "description": "احصل على عطرين من أي نوع تريده مقابل 10 دنانير فقط!",
+                "price": 10,
+                "type": "special"
+            },
+            {
+                "id": 2,
+                "title": "خصم 20% على 3 عطور أو أكثر",
+                "description": "اشترِ 3 عطور أو أكثر واحصل على خصم 20% على إجمالي المشتريات",
+                "discount": 20,
+                "type": "discount"
+            }
+        ];
+
+        // بيانات وسائل التواصل الاجتماعي
+        const socialMedia = [
+            {
+                "platform": "تويتر (X)",
+                "url": "https://x.com/iyznperfume",
+                "icon": "fab fa-twitter",
+                "color": "bg-dark"
+            },
+            {
+                "platform": "تيك توك",
+                "url": "https://www.tiktok.com/@iyznperfume",
+                "icon": "fab fa-tiktok",
+                "color": "bg-dark"
+            },
+            {
+                "platform": "انستقرام",
+                "url": "https://www.instagram.com/iyznperfume",
+                "icon": "fab fa-instagram",
+                "color": "bg-dark"
+            },
+            {
+                "platform": "فيسبوك",
+                "url": "#",
+                "icon": "fab fa-facebook-f",
+                "color": "bg-dark"
+            }
+        ];
+
+        // معلومات المتجر
+        const storeInfo = {
+            "name": "IYZN Perfumes",
+            "location": "عمان، الأردن",
+            "email": "iyznperfume@gmail.com",
+            "currency": "الدينار الأردني (د.أ)",
+            "slogan": "عطور IYZN... نراهن على الجودة قبل السعر",
+            "priceRange": "5-7 د.أ"
+        };
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            // منع السلوك الافتراضي للروابط
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // معالجة نموذج الاتصال
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const message = document.getElementById('message').value;
+                    
+                    if (name && email && message) {
+                        alert(`شكراً ${name} على رسالتك! سنتواصل معك على ${email} في أقرب وقت.`);
+                        contactForm.reset();
+                    } else {
+                        alert('يرجى ملء جميع الحقول المطلوبة.');
+                    }
+                });
+            }
+
+            // إضافة تأثيرات تفاعلية للأزرار
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // تحديث سنة حقوق النشر
+            const copyrightYear = document.querySelector('footer p');
+            if (copyrightYear) {
+                const currentYear = new Date().getFullYear();
+                copyrightYear.innerHTML = copyrightYear.innerHTML.replace('2024', currentYear);
+            }
+
+            // عرض رسالة ترحيب
+            setTimeout(() => {
+                console.log(`مرحباً بك في ${storeInfo.name}!`);
+                console.log(`موقعنا: ${storeInfo.location}`);
+                console.log(`شعارنا: "${storeInfo.slogan}"`);
+                console.log(`نطاق الأسعار: ${storeInfo.priceRange}`);
+            }, 1000);
+        });
+
+        // وظيفة إضافة منتج للسلة
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                alert(`تم إضافة ${product.name} إلى سلة التسوق بسعر ${product.price} د.أ`);
+                // هنا يمكن إضافة منطق إدارة سلة التسوق
+            }
+        }
+
+        // وظيفة الاستفادة من العرض
+        function useOffer(offerId) {
+            const offer = offers.find(o => o.id === offerId);
+            if (offer) {
+                alert(`تهانينا! يمكنك الآن الاستفادة من عرض: ${offer.title}`);
+                // هنا يمكن إضافة منطق تطبيق العرض
+            }
+        }
+    </script>
 </body>
 </html>
