@@ -7,157 +7,186 @@
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
 
 <style>
-body { font-family: 'Cairo', sans-serif; }
+body{font-family:'Cairo',sans-serif;background:#fff;color:#000}
 
-/* شريط متحرك مستمر بدون اختفاء */
-.marquee {
-overflow:hidden;
-white-space:nowrap;
-background:#000;
-color:#fff;
+/* شريط متحرك مستمر */
+.marquee{overflow:hidden;background:#000;color:#fff}
+.marquee-content{
+display:flex;
+width:max-content;
+animation:scroll 35s linear infinite
+}
+.marquee-content span{
 font-weight:900;
 font-size:18px;
+margin:0 60px;
+white-space:nowrap;
 }
-.marquee-content {
-display:inline-block;
-animation:marquee 40s linear infinite;
-}
-@keyframes marquee {
-0% { transform: translateX(0); }
-100% { transform: translateX(-50%); }
-}
-
-/* كروت احترافية */
-.product-card {
-border-radius:25px;
-background:#fff;
-transition:.4s;
-}
-.product-card:hover {
-transform:translateY(-10px);
-box-shadow:0 30px 60px rgba(0,0,0,.08);
+@keyframes scroll{
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
 }
 
 /* سلة جانبية */
-.cart-sidebar{
+.cart{
 position:fixed;
 top:0;
-right:-400px;
-width:380px;
+right:-420px;
+width:400px;
 height:100%;
 background:#fff;
-box-shadow:-10px 0 40px rgba(0,0,0,.1);
+box-shadow:-20px 0 50px rgba(0,0,0,.15);
 transition:.4s;
-z-index:3000;
-padding:25px;
-overflow-y:auto;
+z-index:5000;
+padding:30px;
+overflow:auto
 }
-.cart-sidebar.active{ right:0; }
+.cart.active{right:0}
+
+/* مودال عام */
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.5);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:6000
+}
+.modal-content{
+background:#fff;
+padding:40px;
+width:420px;
+border-radius:25px
+}
+
+/* بطاقة */
+.card{
+transition:.4s;
+border-radius:25px
+}
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 25px 60px rgba(0,0,0,.1)
+}
 
 .hero-img{
-max-height:600px;
-object-fit:contain;
+height:100vh;
+object-fit:cover;
+width:100%
 }
 </style>
 </head>
 
-<body class="bg-white text-black">
+<body>
 
-<!-- الشريط العلوي -->
-<div class="marquee py-3">
+<!-- الشريط -->
+<div class="marquee py-4">
 <div class="marquee-content">
-اشتري عطر ب10 واحصل على الثاني مجانا اي نوع تريده • توصيل مجاني للطلبات فوق 25 دينار •
-اشتري عطر ب10 واحصل على الثاني مجانا اي نوع تريده • توصيل مجاني للطلبات فوق 25 دينار •
-اشتري عطر ب10 واحصل على الثاني مجانا اي نوع تريده • توصيل مجاني للطلبات فوق 25 دينار •
+<span>اشتري عطر ب10 واحصل على الثاني مجاناً</span>
+<span>توصيل مجاني للطلبات فوق 25 دينار</span>
+<span>اشتري عطر ب10 واحصل على الثاني مجاناً</span>
+<span>توصيل مجاني للطلبات فوق 25 دينار</span>
 </div>
 </div>
 
 <!-- الهيدر -->
-<header class="flex justify-between items-center px-10 py-6 border-b">
+<header class="flex justify-between items-center px-12 py-6 border-b">
 <h1 class="text-2xl font-black tracking-widest">IYZN</h1>
 <div class="flex gap-8 text-lg">
-<i class="fa fa-user cursor-pointer"></i>
+<i class="fa fa-search cursor-pointer"></i>
+<i class="fa fa-user cursor-pointer" onclick="openLogin()"></i>
 <i class="fa fa-shopping-bag cursor-pointer" onclick="toggleCart()"></i>
 </div>
 </header>
 
-<!-- HERO قوي -->
-<section class="grid md:grid-cols-2 items-center px-16 py-24">
-<div>
-<h2 class="text-6xl font-black leading-tight mb-6">
-تجربة عطرية<br>
-<span class="text-gray-400">استثنائية</span>
+<!-- HERO ضخم -->
+<section class="relative">
+<img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" class="hero-img">
+<div class="absolute inset-0 bg-black/40 flex items-center px-20">
+<div class="text-white max-w-2xl">
+<h2 class="text-[80px] font-black leading-tight mb-6">
+عطور IYZN
 </h2>
-<p class="text-gray-600 text-lg mb-8">
-اكتشف تشكيلتنا المختارة بعناية من أفخم العطور بثبات يدوم طويلاً.
+<p class="text-2xl font-bold mb-10">
+نراهن على الجودة قبل السعر
 </p>
-<button class="bg-black text-white px-10 py-4 rounded-full hover:opacity-80 transition">
+<button class="bg-white text-black px-12 py-4 rounded-full font-bold text-lg">
 تسوق الآن
 </button>
 </div>
-
-<div class="text-center">
-<img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de"
-class="hero-img mx-auto">
 </div>
 </section>
 
-<!-- فلترة احترافية -->
-<section class="px-12 mb-10">
-<div class="flex gap-4 justify-center">
-<button onclick="filterProducts('all')" class="border px-6 py-2 rounded-full">الكل</button>
-<button onclick="filterProducts('men')" class="border px-6 py-2 rounded-full">رجالي</button>
-<button onclick="filterProducts('women')" class="border px-6 py-2 rounded-full">نسائي</button>
-<button onclick="filterProducts('unisex')" class="border px-6 py-2 rounded-full">للجنسين</button>
+<!-- الفلترة -->
+<section class="py-16 text-center">
+<div class="flex justify-center gap-6 mb-8">
+<button onclick="filter('all')" class="border px-6 py-2 rounded-full">الكل</button>
+<button onclick="filter('men')" class="border px-6 py-2 rounded-full">رجالي</button>
+<button onclick="filter('women')" class="border px-6 py-2 rounded-full">نسائي</button>
+<button onclick="filter('unisex')" class="border px-6 py-2 rounded-full">للجنسين</button>
 </div>
+<input type="text" placeholder="ابحث عن عطر..." onkeyup="searchProduct(this.value)"
+class="border px-6 py-3 rounded-full w-80 text-center">
 </section>
 
 <!-- المنتجات -->
 <section class="px-16 pb-20">
-<div id="productList" class="grid md:grid-cols-3 gap-12"></div>
+<div id="products" class="grid md:grid-cols-3 gap-12"></div>
 </section>
 
-<!-- صفحة منتج منفصلة -->
-<div id="productPage" class="hidden fixed inset-0 bg-white z-4000 p-16 overflow-y-auto">
-<button onclick="closeProduct()" class="mb-8 text-xl">✕ رجوع</button>
-<div id="productDetails"></div>
-</div>
-
-<!-- سلة -->
-<div id="cart" class="cart-sidebar">
+<!-- السلة -->
+<div id="cart" class="cart">
 <h2 class="text-2xl font-bold mb-6">سلة الشراء</h2>
 <ul id="cartItems" class="mb-6"></ul>
-<p id="totalPrice" class="font-bold mb-6"></p>
-<button onclick="checkoutWhatsApp()" class="bg-black text-white w-full py-3 rounded-full">
-إرسال الطلب عبر واتساب
+
+<select id="city" onchange="updateTotal()" class="border p-3 w-full mb-4">
+<option value="2">الزرقاء - 2 دينار</option>
+<option value="3">عمان وباقي الأردن - 3 دينار</option>
+</select>
+
+<p id="total" class="font-bold text-lg mb-6"></p>
+
+<button onclick="checkout()" class="bg-black text-white w-full py-3 rounded-full">
+إتمام الطلب
 </button>
 </div>
 
-<script>
+<!-- تسجيل دخول -->
+<div id="loginModal" class="modal">
+<div class="modal-content">
+<h2 class="text-2xl font-bold mb-6 text-center">تسجيل الدخول</h2>
+<input type="email" placeholder="البريد الإلكتروني"
+class="border w-full p-3 mb-4 rounded">
+<input type="password" placeholder="كلمة المرور"
+class="border w-full p-3 mb-6 rounded">
+<button class="bg-black text-white w-full py-3 rounded-full">دخول</button>
+</div>
+</div>
 
+<script>
 const products=[
-{name:"Oud Royal",price:18,category:"men",img:"https://images.unsplash.com/photo-1594035910387-fea47794261f"},
-{name:"Black Intense",price:22,category:"men",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519"},
-{name:"White Musk",price:16,category:"women",img:"https://images.unsplash.com/photo-1585386959984-a41552231658"},
-{name:"Amber Gold",price:20,category:"unisex",img:"https://images.unsplash.com/photo-1615634260167-c8cdede054de"}
+{name:"Oud Royal",price:18,cat:"men",img:"https://images.unsplash.com/photo-1594035910387-fea47794261f"},
+{name:"Black Intense",price:22,cat:"men",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519"},
+{name:"White Musk",price:16,cat:"women",img:"https://images.unsplash.com/photo-1585386959984-a41552231658"},
+{name:"Amber Gold",price:20,cat:"unisex",img:"https://images.unsplash.com/photo-1615634260167-c8cdede054de"}
 ];
 
 let cart=[];
 
-function renderProducts(list){
-let container=document.getElementById("productList");
+function render(list){
+let container=document.getElementById("products");
 container.innerHTML="";
 list.forEach(p=>{
 container.innerHTML+=`
-<div class="product-card p-6 text-center">
-<img src="${p.img}" class="h-72 mx-auto object-contain mb-6 cursor-pointer"
-onclick="openProduct('${p.name}')">
+<div class="card p-6 text-center bg-white">
+<img src="${p.img}" class="h-72 mx-auto object-contain mb-6">
 <h3 class="font-bold text-xl mb-2">${p.name}</h3>
 <div class="font-bold mb-4">${p.price} دينار</div>
-<button onclick="addToCart('${p.name}',${p.price})"
+<button onclick="add('${p.name}',${p.price})"
 class="bg-black text-white w-full py-3 rounded-full">
 أضف للسلة
 </button>
@@ -165,68 +194,59 @@ class="bg-black text-white w-full py-3 rounded-full">
 `;
 });
 }
+render(products);
 
-renderProducts(products);
-
-function filterProducts(cat){
-if(cat==="all") renderProducts(products);
-else renderProducts(products.filter(p=>p.category===cat));
+function filter(cat){
+if(cat==="all") render(products);
+else render(products.filter(p=>p.cat===cat));
 }
 
-function openProduct(name){
-let p=products.find(x=>x.name===name);
-document.getElementById("productDetails").innerHTML=`
-<div class="grid md:grid-cols-2 gap-16 items-center">
-<img src="${p.img}" class="h-96 mx-auto object-contain">
-<div>
-<h2 class="text-4xl font-black mb-4">${p.name}</h2>
-<p class="text-gray-600 mb-6">وصف احترافي للعطر وثبات عالي ورائحة فاخرة.</p>
-<div class="text-2xl font-bold mb-6">${p.price} دينار</div>
-<button onclick="addToCart('${p.name}',${p.price})"
-class="bg-black text-white px-10 py-3 rounded-full">
-أضف للسلة
-</button>
-</div>
-</div>
-`;
-document.getElementById("productPage").classList.remove("hidden");
+function searchProduct(val){
+render(products.filter(p=>p.name.toLowerCase().includes(val.toLowerCase())));
 }
 
-function closeProduct(){
-document.getElementById("productPage").classList.add("hidden");
-}
-
-function addToCart(name,price){
+function add(name,price){
 cart.push({name,price});
-renderCart();
+updateTotal();
+toggleCart();
 }
 
-function renderCart(){
+function updateTotal(){
 let list=document.getElementById("cartItems");
 list.innerHTML="";
 let total=0;
-cart.forEach(item=>{
-list.innerHTML+=`<li class="mb-2">${item.name} - ${item.price} دينار</li>`;
-total+=item.price;
+cart.forEach(i=>{
+list.innerHTML+=`<li class="mb-2">${i.name} - ${i.price} دينار</li>`;
+total+=i.price;
 });
-if(total>=25){
-total=total-3; // خصم تلقائي
+
+/* خصم تلقائي */
+if(cart.length>=2){
+total=total-10; 
 }
-document.getElementById("totalPrice").innerText="المجموع: "+total+" دينار";
+
+/* شحن */
+let shipping=parseInt(document.getElementById("city").value);
+if(total>=25) shipping=0;
+
+total+=shipping;
+
+document.getElementById("total").innerText="المجموع النهائي: "+total+" دينار";
 }
 
 function toggleCart(){
 document.getElementById("cart").classList.toggle("active");
 }
 
-function checkoutWhatsApp(){
-let total=document.getElementById("totalPrice").innerText;
-let message="طلب جديد:%0A";
-cart.forEach(item=>{message+=item.name+" - "+item.price+" دينار%0A";});
-message+=total;
-window.open("https://wa.me/962795748326?text="+message);
+function openLogin(){
+document.getElementById("loginModal").style.display="flex";
 }
 
+function checkout(){
+let msg="طلب جديد:%0A";
+cart.forEach(i=>msg+=i.name+" - "+i.price+" دينار%0A");
+window.open("https://wa.me/962795748326?text="+msg);
+}
 </script>
 
 </body>
