@@ -5,19 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IYZN Perfumes</title>
 
+<!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-XxYf5+FV+zN6D1F0ePfXxXG6fA1+6Uwz2XWbOZ/hqZYl3eHz/3mOzF2+V0M6Kkm0jvR6K4t5Svs5CnB/1x0Tg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
 body{font-family:'Cairo',sans-serif;background:#fff;color:#000;margin:0}
 
-/* شريط متحرك مستمر حقيقي */
+/* شريط متحرك مستمر */
 .marquee{overflow:hidden;background:#000;color:#fff}
 .marquee-track{
 display:flex;
 width:max-content;
-animation:scroll 40s linear infinite
+animation:scroll 40s linear infinite;
 }
 .marquee-track span{
 font-weight:900;
@@ -84,13 +87,14 @@ width:100%
 <!-- الشريط -->
 <div class="marquee py-4">
 <div class="marquee-track">
-<span>اشتري عطر بـ 10 واحصل على الثاني مجاناً</span>
+<span>اشتري عطر بـ10 واحصل على الثاني مجاناً</span>
 <span>توصيل مجاني للطلبات فوق 25 دينار</span>
-<span>اشتري عطر بـ 10 واحصل على الثاني مجاناً</span>
+<span>اشتري عطر بـ10 واحصل على الثاني مجاناً</span>
 <span>توصيل مجاني للطلبات فوق 25 دينار</span>
 </div>
 </div>
 
+<!-- الهيدر -->
 <header class="flex justify-between items-center px-12 py-6 border-b">
 <h1 class="text-2xl font-black tracking-widest">IYZN</h1>
 <div class="flex gap-8 text-lg">
@@ -99,6 +103,7 @@ width:100%
 </div>
 </header>
 
+<!-- HERO ضخم -->
 <section class="relative">
 <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" class="hero-img">
 <div class="absolute inset-0 bg-black/50 flex items-center px-20">
@@ -116,6 +121,7 @@ width:100%
 </div>
 </section>
 
+<!-- المنتجات -->
 <section class="px-16 py-20">
 <div id="products" class="grid md:grid-cols-3 gap-12"></div>
 </section>
@@ -138,6 +144,7 @@ width:100%
 </div>
 
 <script>
+// بيانات العطور
 const products=[
 {name:"Oud Royal",price:7,img:"https://images.unsplash.com/photo-1594035910387-fea47794261f"},
 {name:"Black Intense",price:7,img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519"},
@@ -147,6 +154,7 @@ const products=[
 
 let cart=[];
 
+// عرض المنتجات
 function render(){
 let container=document.getElementById("products");
 container.innerHTML="";
@@ -166,23 +174,24 @@ class="bg-black text-white w-full py-3 rounded-full">
 }
 render();
 
+// إضافة للسلة
 function add(name,price){
 cart.push({name,price});
 updateTotal();
 toggleCart();
 }
 
+// تحديث السلة والمجموع
 function updateTotal(){
 let list=document.getElementById("cartItems");
 list.innerHTML="";
 let total=0;
-
 cart.forEach(i=>{
 list.innerHTML+=`<li class="mb-2">${i.name} - ${i.price} دينار</li>`;
 total+=i.price;
 });
 
-/* خصم تلقائي لكل عطرين */
+// خصم تلقائي لكل عطرين
 let discount = Math.floor(cart.length / 2) * 7;
 total -= discount;
 
@@ -191,31 +200,30 @@ if(total>=25) shipping=0;
 
 total+=shipping;
 
-document.getElementById("total").innerText=
-"المجموع: "+total+" دينار";
+document.getElementById("total").innerText="المجموع: "+total+" دينار";
 }
 
+// فتح وغلق السلة
 function toggleCart(){
 document.getElementById("cart").classList.toggle("active");
 }
 
+// تسجيل دخول وهمي
 function openLogin(){
 alert("ميزة تسجيل الدخول تحتاج ربط Backend لاحقاً");
 }
 
+// Checkout عبر واتساب
 function checkout(){
 let shipping=parseInt(document.getElementById("city").value);
 let msg="طلب جديد:%0A";
-
 cart.forEach(i=>msg+=i.name+" - "+i.price+" دينار%0A");
-
 msg+="الشحن: "+shipping+" دينار";
-
 window.open("https://wa.me/962795748326?text="+msg);
 }
 </script>
 
-<!-- FOOTER كامل -->
+<!-- FOOTER -->
 <footer class="bg-black text-white py-16 px-12">
 
 <div class="grid md:grid-cols-3 gap-12 mb-12">
@@ -255,7 +263,6 @@ iyznperfume@gmail.com
 <!-- وسائل الدفع -->
 <div>
 <h3 class="text-xl font-bold mb-6">وسائل الدفع</h3>
-
 <div class="grid grid-cols-2 gap-4 text-lg">
 
 <div class="border border-gray-700 py-3 text-center rounded-lg">
