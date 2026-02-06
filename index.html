@@ -6,190 +6,197 @@
 <title>IYZN Perfumes</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
 <style>
-body {
-    font-family: 'Cairo', sans-serif;
-}
+body { font-family: 'Cairo', sans-serif; }
 
-/* شريط متحرك */
-.marquee {
-    overflow: hidden;
-    position: relative;
-    white-space: nowrap;
-}
-
+/* شريط متحرك بطيء */
+.marquee { overflow:hidden; white-space:nowrap; background:#000; }
 .marquee-content {
-    display: inline-block;
-    padding-left: 100%;
-    animation: marquee 18s linear infinite;
+display:inline-block;
+padding-left:100%;
+animation:marquee 35s linear infinite;
+font-weight:900;
+font-size:18px;
 }
-
 @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
+0%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
 }
 
-/* كرت المنتج */
+/* كروت */
 .product-card {
-    border-radius: 24px;
-    overflow: hidden;
-    transition: all .4s ease;
-    background: #fff;
+border-radius:25px;
+transition:.4s;
+background:#fff;
+}
+.product-card:hover {
+transform:translateY(-8px);
+box-shadow:0 25px 45px rgba(0,0,0,.08);
 }
 
-.product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+/* سلة جانبية */
+.cart-sidebar {
+position:fixed;
+top:0;
+right:-400px;
+width:350px;
+height:100%;
+background:#fff;
+box-shadow:-5px 0 20px rgba(0,0,0,.1);
+transition:.4s;
+z-index:2000;
+padding:20px;
+overflow-y:auto;
 }
+.cart-sidebar.active { right:0; }
 </style>
 </head>
 
 <body class="bg-white text-black">
 
-<!-- الشريط العلوي المتحرك -->
-<div class="bg-black text-white py-3 marquee">
-    <div class="marquee-content text-lg font-semibold">
-        خصم 20% على جميع العطور • شحن سريع لجميع المناطق • عطور أصلية بثبات عالي •
-        خصم 20% على جميع العطور • شحن سريع لجميع المناطق • عطور أصلية بثبات عالي •
-    </div>
+<!-- شريط العرض -->
+<div class="marquee text-white py-3">
+<div class="marquee-content">
+اشتري عطر ب10 واحصل على الثاني مجانا اي نوع تريده • توصيل مجاني للطلبات فوق 25 دينار • 
+اشتري عطر ب10 واحصل على الثاني مجانا اي نوع تريده • توصيل مجاني للطلبات فوق 25 دينار •
+</div>
 </div>
 
 <!-- الهيدر -->
-<header class="border-b border-gray-100 bg-white sticky top-0 z-50">
-    <div class="container mx-auto px-6 py-5 flex justify-between items-center">
-
-        <div class="text-2xl font-extrabold tracking-widest">
-            IYZN
-        </div>
-
-        <nav class="hidden md:flex gap-10 text-sm font-semibold">
-            <a href="#" class="hover:opacity-60">الرئيسية</a>
-            <a href="#products" class="hover:opacity-60">العطور</a>
-            <a href="#about" class="hover:opacity-60">من نحن</a>
-            <a href="#contact" class="hover:opacity-60">تواصل معنا</a>
-        </nav>
-
-        <div class="flex gap-6 text-lg">
-            <i class="fas fa-search cursor-pointer"></i>
-            <i class="fas fa-user cursor-pointer"></i>
-            <i class="fas fa-shopping-bag cursor-pointer"></i>
-        </div>
-
-    </div>
+<header class="flex justify-between items-center px-8 py-6 border-b">
+<h1 class="text-2xl font-black tracking-widest">IYZN</h1>
+<div class="flex gap-6 text-lg">
+<i class="fa fa-user cursor-pointer" onclick="toggleLogin()"></i>
+<i class="fa fa-shopping-bag cursor-pointer" onclick="toggleCart()"></i>
+</div>
 </header>
 
-<!-- قسم الهيرو -->
-<section class="py-24">
-    <div class="container mx-auto px-6 grid md:grid-cols-2 items-center gap-16">
-
-        <div>
-            <h1 class="text-5xl font-black leading-tight mb-6">
-                عطور تعكس <br>
-                <span class="text-gray-400">شخصيتك</span>
-            </h1>
-
-            <p class="text-gray-600 mb-8 text-lg">
-                اكتشف تشكيلتنا المختارة بعناية من أفخم العطور بثبات يدوم طويلاً.
-            </p>
-
-            <div class="flex gap-4">
-                <a href="#products" class="bg-black text-white px-8 py-4 rounded-full hover:opacity-80 transition">
-                    تسوق الآن
-                </a>
-
-                <a href="#" class="border border-black px-8 py-4 rounded-full hover:bg-black hover:text-white transition">
-                    اكتشف المجموعة
-                </a>
-            </div>
-        </div>
-
-        <div>
-            <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de"
-                 class="rounded-3xl shadow-2xl"
-                 alt="Perfume">
-        </div>
-
-    </div>
+<!-- جملة فخمة -->
+<section class="text-center py-16">
+<h2 class="text-4xl font-black mb-4">عطور IYZN... نراهن على الجودة قبل السعر</h2>
+<p class="text-gray-600">كل عطر بـ 7 دنانير أردنية</p>
 </section>
 
 <!-- المنتجات -->
-<section id="products" class="py-20 bg-gray-50">
-    <div class="container mx-auto px-6">
+<section class="px-10 pb-20">
+<div class="grid md:grid-cols-3 gap-10">
 
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-black mb-4">العطور</h2>
-            <p class="text-gray-500">اختيارات مميزة بعناية</p>
-        </div>
+<div class="product-card p-6 text-center">
+<img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de" class="h-72 mx-auto object-contain mb-6">
+<h3 class="font-bold text-xl mb-2">Oud Royal</h3>
+<div class="font-bold mb-4">7 دنانير</div>
+<button onclick="addToCart('Oud Royal',7)" class="bg-black text-white w-full py-3 rounded-full">أضف للسلة</button>
+</div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<div class="product-card p-6 text-center">
+<img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" class="h-72 mx-auto object-contain mb-6">
+<h3 class="font-bold text-xl mb-2">Black Intense</h3>
+<div class="font-bold mb-4">7 دنانير</div>
+<button onclick="addToCart('Black Intense',7)" class="bg-black text-white w-full py-3 rounded-full">أضف للسلة</button>
+</div>
 
-            <!-- منتج -->
-            <div class="product-card p-6 text-center">
-                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f"
-                     class="h-72 mx-auto object-contain mb-6">
+<div class="product-card p-6 text-center">
+<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519" class="h-72 mx-auto object-contain mb-6">
+<h3 class="font-bold text-xl mb-2">White Musk</h3>
+<div class="font-bold mb-4">7 دنانير</div>
+<button onclick="addToCart('White Musk',7)" class="bg-black text-white w-full py-3 rounded-full">أضف للسلة</button>
+</div>
 
-                <h3 class="text-xl font-bold mb-2">Oud Royal</h3>
-                <p class="text-gray-500 text-sm mb-4">عطر شرقي فاخر</p>
-                <div class="text-xl font-bold mb-6">149 ر.س</div>
-
-                <button class="bg-black text-white w-full py-3 rounded-full hover:opacity-80 transition">
-                    أضف للسلة
-                </button>
-            </div>
-
-            <!-- منتج -->
-            <div class="product-card p-6 text-center">
-                <img src="https://images.unsplash.com/photo-1585386959984-a41552231658"
-                     class="h-72 mx-auto object-contain mb-6">
-
-                <h3 class="text-xl font-bold mb-2">Black Intense</h3>
-                <p class="text-gray-500 text-sm mb-4">ثبات يدوم طويلاً</p>
-                <div class="text-xl font-bold mb-6">179 ر.س</div>
-
-                <button class="bg-black text-white w-full py-3 rounded-full hover:opacity-80 transition">
-                    أضف للسلة
-                </button>
-            </div>
-
-            <!-- منتج -->
-            <div class="product-card p-6 text-center">
-                <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519"
-                     class="h-72 mx-auto object-contain mb-6">
-
-                <h3 class="text-xl font-bold mb-2">White Musk</h3>
-                <p class="text-gray-500 text-sm mb-4">رائحة ناعمة يومية</p>
-                <div class="text-xl font-bold mb-6">129 ر.س</div>
-
-                <button class="bg-black text-white w-full py-3 rounded-full hover:opacity-80 transition">
-                    أضف للسلة
-                </button>
-            </div>
-
-        </div>
-    </div>
+</div>
 </section>
 
-<!-- قسم بسيط تعريفي -->
-<section id="about" class="py-20">
-    <div class="container mx-auto px-6 text-center max-w-3xl">
-        <h2 class="text-4xl font-black mb-6">عن المتجر</h2>
-        <p class="text-gray-600 leading-8">
-            نقدم لك تجربة تسوق عطرية راقية تجمع بين الجودة العالية والتصميم الفاخر.
-            نحرص على اختيار أفضل التركيبات لضمان الثبات والفخامة في كل زجاجة.
-        </p>
-    </div>
+<!-- باكج خصم -->
+<section class="bg-gray-100 py-16 text-center">
+<h2 class="text-3xl font-black mb-6">باكج مميز (3 عطور)</h2>
+<p>السعر الأصلي 21 دينار</p>
+<p class="text-2xl font-bold">بعد الخصم 16.8 دينار (خصم 20%)</p>
+<button onclick="addToCart('باكج 3 عطور',16.8)" class="mt-6 bg-black text-white px-10 py-3 rounded-full">أضف الباكج للسلة</button>
 </section>
 
-<!-- الفوتر -->
-<footer class="bg-black text-white py-10 text-center">
-    <div class="container mx-auto px-6">
-        <div class="text-2xl font-extrabold tracking-widest mb-4">IYZN</div>
-        <p class="text-gray-400 text-sm">© 2026 جميع الحقوق محفوظة</p>
-    </div>
-</footer>
+<!-- طرق الدفع -->
+<section class="py-16 text-center">
+<h2 class="text-3xl font-black mb-8">طرق الدفع</h2>
+<p>ماستر كارد • فيزا • مدى • كاش • كليك • محفظة</p>
+</section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+<!-- تواصل -->
+<section class="bg-black text-white py-16 text-center">
+<h2 class="text-3xl font-black mb-6">تواصل معنا</h2>
+<p>واتساب: +962795748326</p>
+<p>البريد: iyznperfume@gmail.com</p>
+
+<div class="flex justify-center gap-6 mt-6 text-2xl">
+<a href="https://x.com/iyznperfume"><i class="fab fa-x-twitter"></i></a>
+<a href="https://www.tiktok.com/@iyznperfume"><i class="fab fa-tiktok"></i></a>
+<a href="https://www.instagram.com/iyznperfume"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-facebook"></i></a>
+</div>
+</section>
+
+<!-- سلة -->
+<div id="cart" class="cart-sidebar">
+<h2 class="text-2xl font-bold mb-6">سلة الشراء</h2>
+<ul id="cartItems" class="mb-6"></ul>
+<p id="totalPrice" class="font-bold mb-6">المجموع: 0 دينار</p>
+
+<select id="city" class="w-full border p-3 mb-4">
+<option value="2">الزرقاء (2 دينار)</option>
+<option value="3">عمان وباقي المناطق (3 دنانير)</option>
+</select>
+
+<button onclick="checkoutWhatsApp()" class="bg-black text-white w-full py-3 rounded-full">إرسال الطلب عبر واتساب</button>
+</div>
+
+<!-- تسجيل دخول -->
+<div id="loginBox" class="hidden fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
+<div class="bg-white p-8 rounded-2xl w-80 text-center">
+<h3 class="text-xl font-bold mb-4">تسجيل حساب</h3>
+<input id="username" placeholder="اسم المستخدم" class="border w-full p-2 mb-3">
+<input id="password" type="password" placeholder="كلمة المرور" class="border w-full p-2 mb-4">
+<button onclick="saveUser()" class="bg-black text-white w-full py-2 rounded-full">تسجيل</button>
+</div>
+</div>
+
+<script>
+let cart=[];
+function toggleCart(){document.getElementById('cart').classList.toggle('active');}
+function toggleLogin(){document.getElementById('loginBox').classList.toggle('hidden');}
+
+function addToCart(name,price){
+cart.push({name,price});
+renderCart();
+}
+
+function renderCart(){
+let list=document.getElementById('cartItems');
+list.innerHTML='';
+let total=0;
+cart.forEach(item=>{
+list.innerHTML+=`<li class="mb-2">${item.name} - ${item.price} دينار</li>`;
+total+=item.price;
+});
+document.getElementById('totalPrice').innerText="المجموع: "+total+" دينار";
+}
+
+function checkoutWhatsApp(){
+let cityPrice=parseInt(document.getElementById('city').value);
+let total=cart.reduce((a,b)=>a+b.price,0)+cityPrice;
+let message="طلب جديد:%0A";
+cart.forEach(item=>{message+=item.name+" - "+item.price+" دينار%0A";});
+message+="سعر التوصيل: "+cityPrice+" دينار%0A";
+message+="المجموع الكلي: "+total+" دينار";
+window.open("https://wa.me/962795748326?text="+message);
+}
+
+function saveUser(){
+localStorage.setItem("user",document.getElementById('username').value);
+alert("تم إنشاء الحساب بنجاح");
+toggleLogin();
+}
+</script>
+
 </body>
 </html>
