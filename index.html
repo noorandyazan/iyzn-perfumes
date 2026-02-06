@@ -88,8 +88,6 @@ width:100%
 <span>توصيل مجاني للطلبات فوق 25 دينار</span>
 <span>اشتري عطر بـ 10 واحصل على الثاني مجاناً</span>
 <span>توصيل مجاني للطلبات فوق 25 دينار</span>
-<span>اشتري عطر بـ 10 واحصل على الثاني مجاناً</span>
-<span>توصيل مجاني للطلبات فوق 25 دينار</span>
 </div>
 </div>
 
@@ -184,7 +182,7 @@ list.innerHTML+=`<li class="mb-2">${i.name} - ${i.price} دينار</li>`;
 total+=i.price;
 });
 
-/* كل عطرين = خصم 7 (يعني الثاني مجاني) */
+/* خصم تلقائي لكل عطرين */
 let discount = Math.floor(cart.length / 2) * 7;
 total -= discount;
 
@@ -216,6 +214,87 @@ msg+="الشحن: "+shipping+" دينار";
 window.open("https://wa.me/962795748326?text="+msg);
 }
 </script>
+
+<!-- FOOTER كامل -->
+<footer class="bg-black text-white py-16 px-12">
+
+<div class="grid md:grid-cols-3 gap-12 mb-12">
+
+<!-- عن المتجر -->
+<div>
+<h3 class="text-2xl font-black mb-6">IYZN</h3>
+<p class="text-gray-400 leading-7">
+عطور IYZN... نراهن على الجودة قبل السعر  
+نقدم تجربة عطرية فاخرة بثبات يدوم طويلاً.
+</p>
+</div>
+
+<!-- التواصل -->
+<div>
+<h3 class="text-xl font-bold mb-6">تواصل معنا</h3>
+<p class="mb-3">📱 واتساب: 
+<a href="https://wa.me/962795748326" target="_blank" class="hover:underline">
++962795748326
+</a>
+</p>
+
+<p class="mb-3">📧 البريد:
+<a href="mailto:iyznperfume@gmail.com" class="hover:underline">
+iyznperfume@gmail.com
+</a>
+</p>
+
+<div class="flex gap-6 mt-6 text-2xl">
+<a href="https://x.com/iyznperfume" target="_blank"><i class="fab fa-x-twitter"></i></a>
+<a href="https://www.tiktok.com/@iyznperfume" target="_blank"><i class="fab fa-tiktok"></i></a>
+<a href="https://www.instagram.com/iyznperfume" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://www.facebook.com/iyznperfume" target="_blank"><i class="fab fa-facebook"></i></a>
+</div>
+</div>
+
+<!-- وسائل الدفع -->
+<div>
+<h3 class="text-xl font-bold mb-6">وسائل الدفع</h3>
+
+<div class="grid grid-cols-2 gap-4 text-lg">
+
+<div class="border border-gray-700 py-3 text-center rounded-lg">
+<i class="fab fa-cc-visa text-3xl mb-2"></i>
+<p>Visa</p>
+</div>
+
+<div class="border border-gray-700 py-3 text-center rounded-lg">
+<i class="fab fa-cc-mastercard text-3xl mb-2"></i>
+<p>MasterCard</p>
+</div>
+
+<div class="border border-gray-700 py-3 text-center rounded-lg">
+<i class="fa fa-money-bill-wave text-3xl mb-2"></i>
+<p>Cash</p>
+</div>
+
+<div class="border border-gray-700 py-3 text-center rounded-lg">
+<i class="fa fa-mobile-screen text-3xl mb-2"></i>
+<p>CliQ</p>
+</div>
+
+<div class="border border-gray-700 py-3 text-center rounded-lg col-span-2">
+<i class="fa fa-wallet text-3xl mb-2"></i>
+<p>محفظة إلكترونية</p>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<hr class="border-gray-800 mb-6">
+
+<p class="text-center text-gray-500 text-sm">
+© 2026 IYZN Perfumes - جميع الحقوق محفوظة
+</p>
+
+</footer>
 
 </body>
 </html>
