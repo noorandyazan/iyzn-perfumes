@@ -10,29 +10,34 @@
     <style>
         body { font-family: 'Cairo', sans-serif; background-color: #fff; color: #000; overflow-x: hidden; }
         
-        /* شريط متحرك انسيابي */
-        .marquee { background: #000; color: #fff; padding: 12px 0; overflow: hidden; display: flex; }
+        /* شريط علوي انسيابي */
+        .marquee { background: #000; color: #fff; padding: 8px 0; overflow: hidden; display: flex; z-index: 60; position: relative; }
         .marquee-track { display: flex; width: max-content; animation: scroll-infinite 20s linear infinite; }
-        .marquee-track span { font-weight: 900; font-size: 14px; padding: 0 60px; white-space: nowrap; }
+        .marquee-track span { font-weight: 700; font-size: 13px; padding: 0 40px; white-space: nowrap; }
         @keyframes scroll-infinite { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* السلايدر - حجم متوسط وأنيق */
-        .hero-slider { position: relative; height: 50vh; width: 100%; overflow: hidden; background: #f9f9f9; }
-        .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease-in-out; }
+        /* الهيدر - غير ثابت ليعطي مساحة */
+        header { background: white; border-bottom: 1px solid #eee; padding: 20px 0; transition: 0.3s; }
+
+        /* السلايدر - حجم متناسق */
+        .hero-slider { position: relative; height: 45vh; width: 100%; overflow: hidden; background: #fff; }
+        .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease-in-out; display: flex; align-items: center; justify-content: center; }
         .slide.active { opacity: 1; }
-        .slide img { width: 100%; height: 100%; object-fit: contain; } /* احتواء الصورة لتبدو كإعلان ماتش */
+        .slide img { max-width: 100%; height: 100%; object-fit: cover; }
 
-        /* القوائم الجانبية */
-        .sidebar { position: fixed; top: 0; bottom: 0; right: 0; width: 100%; max-width: 400px; background: #fff; z-index: 1000; transition: transform 0.4s ease; transform: translateX(100%); shadow: -5px 0 15px rgba(0,0,0,0.1); }
+        /* القوائم الجانبية - مع سكرول داخلي */
+        .sidebar { position: fixed; top: 0; bottom: 0; right: 0; width: 100%; max-width: 380px; background: #fff; z-index: 1000; transition: transform 0.4s ease; transform: translateX(100%); display: flex; flex-direction: column; box-shadow: -5px 0 15px rgba(0,0,0,0.05); }
         .sidebar-open { transform: translateX(0); }
+        .sidebar-content { flex: 1; overflow-y: auto; padding: 20px; }
 
-        /* وسائل الدفع */
-        .pay-item { border: 1px solid #eee; border-radius: 8px; cursor: pointer; transition: 0.2s; padding: 10px; text-align: center; grayscale: 100%; opacity: 0.5; }
-        .pay-item.active { border-color: #000; grayscale: 0; opacity: 1; background: #fbfbfb; }
+        /* وسائل الدفع - أحجام صغيرة */
+        .pay-item { border: 1px solid #eee; border-radius: 6px; cursor: pointer; transition: 0.2s; padding: 8px; text-align: center; opacity: 0.6; }
+        .pay-item.active { border-color: #000; opacity: 1; background: #fafafa; }
+        .pay-item i { font-size: 1.2rem; }
 
-        /* كروت المنتجات - حجم ماتش */
-        .product-card img { width: 100%; height: 320px; object-fit: cover; border-radius: 12px; transition: 0.4s; }
-        .product-card:hover img { transform: translateY(-5px); }
+        /* كروت المنتجات */
+        .product-card img { width: 100%; aspect-ratio: 1/1.2; object-fit: cover; border-radius: 8px; transition: 0.3s; }
+        .product-card:hover img { transform: scale(1.02); }
     </style>
 </head>
 <body>
@@ -47,95 +52,107 @@
     </div>
 </div>
 
-<header class="bg-white border-b py-6 sticky top-0 z-50">
+<header>
     <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div class="flex gap-5">
+        <div class="flex gap-4">
             <div class="relative cursor-pointer" onclick="toggleSid('cart', true)">
-                <i class="fa-solid fa-bag-shopping text-2xl"></i>
-                <span id="c-count" class="absolute -top-2 -right-2 bg-black text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                <i class="fa-solid fa-bag-shopping text-xl"></i>
+                <span id="c-count" class="absolute -top-2 -right-2 bg-black text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
             </div>
-            <i class="fa-regular fa-user text-2xl cursor-pointer" onclick="toggleSid('user', true)"></i>
+            <i class="fa-regular fa-user text-xl cursor-pointer" onclick="toggleSid('user', true)"></i>
         </div>
+        
         <div class="text-center">
-            <h1 class="text-4xl font-black tracking-tighter">IYZN</h1>
+            <h1 class="text-3xl font-black tracking-tighter uppercase">IYZN</h1>
         </div>
-        <div class="w-20"></div> </div>
+
+        <div class="w-10"></div>
+    </div>
 </header>
 
-<section class="py-8 text-center bg-white">
-    <h2 class="text-3xl md:text-5xl font-black italic uppercase">نراهن على الجودة قبل السعر</h2>
-</section>
-
-<div class="hero-slider">
-    <div class="slide active"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1200"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=1200"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1543473304-a64d1db98244?w=1200"></div>
+<div class="py-10 text-center bg-white border-b border-gray-50">
+    <p class="text-xl md:text-2xl font-bold text-gray-800 tracking-wide uppercase italic">نراهن على الجودة قبل السعر</p>
 </div>
 
-<main class="max-w-7xl mx-auto px-6 py-16">
+<div class="hero-slider border-b">
+    <div class="slide active"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1000"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=1000"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1543473304-a64d1db98244?w=1000"></div>
+</div>
+
+<main class="max-w-7xl mx-auto px-6 py-12">
     <div id="p-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6">
         </div>
 </main>
 
-<div id="cart" class="sidebar flex flex-col border-l">
-    <div class="p-6 border-b flex justify-between items-center bg-gray-50">
-        <h3 class="font-black uppercase tracking-tighter">حقيبة التسوق</h3>
-        <button onclick="toggleSid('cart', false)" class="text-3xl">&times;</button>
+<div id="cart" class="sidebar">
+    <div class="p-5 border-b flex justify-between items-center">
+        <h3 class="font-bold text-sm uppercase tracking-widest">حقيبة التسوق</h3>
+        <button onclick="toggleSid('cart', false)" class="text-2xl">&times;</button>
     </div>
-    <div id="cart-list" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
-    <div class="p-6 border-t">
-        <div class="flex justify-between font-black text-2xl mb-6">
-            <span>المجموع:</span>
-            <span><span id="c-total">0</span> دينار</span>
+    
+    <div class="sidebar-content" id="cart-list">
         </div>
-        <div class="grid grid-cols-3 gap-2 mb-6" id="pay-grid">
-            <div class="pay-item" onclick="setPay(this, 'Apple Pay')"><i class="fa-brands fa-apple-pay text-xl"></i></div>
-            <div class="pay-item" onclick="setPay(this, 'Visa')"><i class="fa-brands fa-cc-visa text-xl"></i></div>
-            <div class="pay-item text-[10px] font-bold flex items-center justify-center" onclick="setPay(this, 'Mada')">مدى</div>
-            <div class="pay-item text-[10px] font-bold flex items-center justify-center" onclick="setPay(this, 'CliQ')">CliQ</div>
-            <div class="pay-item text-[10px] font-bold flex items-center justify-center" onclick="setPay(this, 'Cash')">كاش</div>
-            <div class="pay-item text-[10px] font-bold flex items-center justify-center" onclick="setPay(this, 'Wallet')">محفظة</div>
+
+    <div class="p-5 border-t bg-gray-50">
+        <div class="flex justify-between items-center mb-4">
+            <span class="text-sm font-bold">المجموع:</span>
+            <span class="text-lg font-black"><span id="c-total">0</span> دينار</span>
         </div>
-        <button onclick="orderNow()" class="w-full bg-black text-white py-4 rounded-lg font-black uppercase tracking-widest text-sm">إتمام الطلب</button>
+        
+        <div class="grid grid-cols-3 gap-2 mb-5">
+            <div class="pay-item" onclick="setPay(this, 'Apple Pay')"><i class="fa-brands fa-apple-pay"></i></div>
+            <div class="pay-item" onclick="setPay(this, 'Visa')"><i class="fa-brands fa-cc-visa"></i></div>
+            <div class="pay-item text-[9px] font-bold flex items-center justify-center" onclick="setPay(this, 'Mada')">مدى</div>
+            <div class="pay-item text-[9px] font-bold flex items-center justify-center" onclick="setPay(this, 'CliQ')">CliQ</div>
+            <div class="pay-item text-[9px] font-bold flex items-center justify-center" onclick="setPay(this, 'Cash')">كاش</div>
+            <div class="pay-item text-[9px] font-bold flex items-center justify-center" onclick="setPay(this, 'Wallet')">محفظة</div>
+        </div>
+
+        <button onclick="orderNow()" class="w-full bg-black text-white py-3 rounded font-bold text-xs uppercase tracking-widest">إتمام الطلب</button>
     </div>
 </div>
 
-<div id="user" class="sidebar p-8 border-l">
-    <div class="flex justify-between items-center mb-10">
-        <h3 class="text-xl font-black">حسابي</h3>
-        <button onclick="toggleSid('user', false)" class="text-3xl">&times;</button>
+<div id="user" class="sidebar">
+    <div class="p-5 border-b flex justify-between items-center">
+        <h3 class="font-bold text-sm uppercase">حسابي</h3>
+        <button onclick="toggleSid('user', false)" class="text-2xl">&times;</button>
     </div>
-    <div class="space-y-4">
-        <input type="email" placeholder="البريد الإلكتروني" class="w-full border p-3 rounded-lg outline-none">
-        <input type="password" placeholder="كلمة المرور" class="w-full border p-3 rounded-lg outline-none">
-        <button class="w-full bg-black text-white py-4 rounded-lg font-black">دخول</button>
-        <button class="w-full border border-black py-4 rounded-lg font-black text-sm">إنشاء حساب جديد</button>
+    <div class="sidebar-content space-y-4">
+        <div class="space-y-1">
+            <label class="text-[10px] font-bold uppercase text-gray-400">البريد الإلكتروني</label>
+            <input type="email" class="w-full border rounded p-2 text-sm outline-none focus:border-black">
+        </div>
+        <div class="space-y-1">
+            <label class="text-[10px] font-bold uppercase text-gray-400">كلمة المرور</label>
+            <input type="password" class="w-full border rounded p-2 text-sm outline-none focus:border-black">
+        </div>
+        <button class="w-full bg-black text-white py-3 rounded text-xs font-bold uppercase">دخول</button>
+        <div class="py-4 border-t mt-4">
+            <p class="text-[10px] text-center text-gray-400 mb-4 font-bold uppercase">ليس لديك حساب؟</p>
+            <button class="w-full border border-black py-3 rounded text-[10px] font-bold uppercase">إنشاء حساب جديد</button>
+        </div>
     </div>
 </div>
 
-<footer class="bg-[#fafafa] border-t py-16 px-6 text-center mt-10">
-    <h2 class="text-2xl font-black mb-8 tracking-tighter uppercase">IYZN PERFUMES</h2>
-    <div class="flex justify-center gap-8 text-2xl mb-10">
-        <a href="https://instagram.com/iyznperfume" target="_blank" class="hover:text-pink-600"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://tiktok.com/@iyznperfume" target="_blank" class="hover:text-black"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://facebook.com/iyznperfume" target="_blank" class="hover:text-blue-600"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://wa.me/962795748326" target="_blank" class="hover:text-green-500"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="mailto:iyznperfume@gmail.com" class="hover:text-red-500"><i class="fa-regular fa-envelope"></i></a>
+<footer class="bg-white border-t py-12 px-6 text-center">
+    <h2 class="text-xl font-black mb-6 tracking-tighter uppercase">IYZN PERFUMES</h2>
+    <div class="flex justify-center gap-6 text-xl mb-8">
+        <a href="https://instagram.com/iyznperfume" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://tiktok.com/@iyznperfume" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://wa.me/962795748326" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
     </div>
-    <div class="flex justify-center gap-4 opacity-30 grayscale mb-6">
-        <i class="fa-brands fa-cc-visa text-2xl"></i>
-        <i class="fa-brands fa-cc-mastercard text-2xl"></i>
-        <i class="fa-brands fa-apple-pay text-2xl"></i>
-    </div>
-    <p class="text-gray-400 font-bold text-[10px] uppercase tracking-widest">© 2026 IYZN | نراهن على الجودة قبل السعر</p>
+    <p class="text-gray-400 font-bold text-[9px] uppercase tracking-widest">© 2026 IYZN | نراهن على الجودة قبل السعر</p>
 </footer>
 
 <script>
     const products = [
-        { id: 1, name: "IYZN - ROYAL", price: 7, img: "https://images.unsplash.com/photo-1543473304-a64d1db98244?w=800" },
-        { id: 2, name: "IYZN - OUD", price: 7, img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800" },
-        { id: 3, name: "IYZN - NIGHT", price: 7, img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800" },
-        { id: 4, name: "IYZN - GOLD", price: 7, img: "https://images.unsplash.com/photo-1557170334-a7c3a4f22038?w=800" }
+        { id: 1, name: "IYZN - ROYAL", price: 7, img: "https://images.unsplash.com/photo-1543473304-a64d1db98244?w=600" },
+        { id: 2, name: "IYZN - OUD", price: 7, img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600" },
+        { id: 3, name: "IYZN - NIGHT", price: 7, img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600" },
+        { id: 4, name: "IYZN - GOLD", price: 7, img: "https://images.unsplash.com/photo-1557170334-a7c3a4f22038?w=600" },
+        { id: 5, name: "IYZN - PURE", price: 7, img: "https://images.unsplash.com/photo-1616948055600-8f940d0218cc?w=600" },
+        { id: 6, name: "IYZN - VELVET", price: 7, img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600" }
     ];
 
     let cart = [];
@@ -144,10 +161,10 @@
     function render() {
         document.getElementById('p-grid').innerHTML = products.map(p => `
             <div class="product-card">
-                <img src="${p.img}" class="mb-4">
-                <h4 class="text-sm font-black uppercase mb-1">${p.name}</h4>
-                <p class="font-black text-lg mb-4">${p.price} دينار</p>
-                <button onclick="add(${p.id})" class="w-full border border-black py-2 rounded-full font-black text-xs hover:bg-black hover:text-white transition">أضف للسلة</button>
+                <img src="${p.img}" class="mb-3">
+                <h4 class="text-[11px] font-black uppercase mb-1">${p.name}</h4>
+                <p class="font-black text-sm mb-3">${p.price} دينار</p>
+                <button onclick="add(${p.id})" class="w-full border border-black py-1.5 rounded-full font-bold text-[9px] uppercase hover:bg-black hover:text-white transition">أضف للسلة</button>
             </div>
         `).join('');
     }
@@ -168,7 +185,11 @@
         let total = 0;
         document.getElementById('cart-list').innerHTML = cart.map((item, index) => {
             total += item.price;
-            return `<div class="flex items-center gap-3 border-b pb-3"><img src="${item.img}" class="w-12 h-12 object-cover rounded"><div class="flex-1 text-xs font-black uppercase">${item.name}</div><button onclick="remove(${index})" class="text-red-500 font-bold text-xs">حذف</button></div>`;
+            return `<div class="flex items-center gap-3 border-b py-3 text-right">
+                <img src="${item.img}" class="w-10 h-10 object-cover rounded shadow-sm">
+                <div class="flex-1 text-[10px] font-bold uppercase">${item.name}</div>
+                <button onclick="remove(${index})" class="text-red-500 font-bold text-[10px]">حذف</button>
+            </div>`;
         }).join('');
         document.getElementById('c-total').innerText = total;
     }
@@ -189,7 +210,6 @@
         window.open(`https://wa.me/962795748326?text=${text}`);
     }
 
-    // سلايدر الصور (3 صور تتغير لحالها)
     let sIdx = 0;
     setInterval(() => {
         const slides = document.querySelectorAll(".slide");
@@ -198,7 +218,7 @@
         slides[sIdx].classList.add("active");
     }, 4000);
 
-    window.onload = render;
+    render();
 </script>
 </body>
 </html>
