@@ -10,11 +10,11 @@
     <style>
         body { font-family: 'Cairo', sans-serif; background-color: #fff; color: #000; overflow-x: hidden; }
         
-        /* 1. الشريط اللانهائي */
+        /* 1. الشريط اللانهائي - تعديل السرعة والحركة */
         .marquee-container { background: #000; color: #fff; padding: 12px 0; overflow: hidden; display: flex; }
-        .marquee-content { display: flex; width: max-content; animation: scroll-infinite 25s linear infinite; }
-        .marquee-content span { font-weight: 900; font-size: 16px; padding: 0 60px; white-space: nowrap; }
-        @keyframes scroll-infinite { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
+        .marquee-content { display: flex; width: max-content; animation: scroll-infinite 20s linear infinite; }
+        .marquee-content span { font-weight: 900; font-size: 18px; padding: 0 60px; white-space: nowrap; }
+        @keyframes scroll-infinite { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* 2. السلايدر المتغير */
         .hero-slider { position: relative; height: 75vh; width: 100%; overflow: hidden; }
@@ -27,11 +27,12 @@
         .cart-open { transform: translateX(0); }
         .cart-closed { transform: translateX(100%); }
 
-        /* 4. وسائل الدفع */
-        .payment-method { border: 2px solid #eee; cursor: pointer; transition: 0.3s; padding: 10px; border-radius: 12px; text-align: center; font-size: 10px; font-weight: 900; }
-        .payment-method.active { border-color: #000; background: #f9f9f9; }
+        /* 4. وسائل الدفع وتفعيلها */
+        .payment-method { border: 2px solid #eee; cursor: pointer; transition: 0.3s; padding: 15px 10px; border-radius: 12px; text-align: center; font-size: 12px; font-weight: 900; }
+        .payment-method.active { border-color: #000; background: #f0f0f0; transform: scale(0.95); }
         
-        .product-card:hover img { transform: scale(1.05); }
+        .product-card img { transition: 0.6s ease; }
+        .product-card:hover img { transform: scale(1.08); }
     </style>
 </head>
 <body>
@@ -45,136 +46,121 @@
     </div>
 </div>
 
-<header class="text-center py-10 border-b sticky top-0 bg-white z-50">
+<header class="text-center py-12 border-b sticky top-0 bg-white z-50">
     <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <div class="relative cursor-pointer" onclick="toggleCart(true)">
-            <i class="fa-solid fa-bag-shopping text-3xl"></i>
+            <i class="fa-solid fa-bag-shopping text-4xl"></i>
             <span id="cart-count" class="absolute -top-2 -right-2 bg-black text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold">0</span>
         </div>
         <div>
-            <h1 class="text-6xl font-black tracking-tighter">IYZN</h1>
-            <p class="text-2xl md:text-4xl font-black text-gray-900 mt-4 leading-tight">عطور IYZN... نراهن على الجودة قبل السعر</p>
+            <h1 class="text-6xl md:text-7xl font-black tracking-tighter">IYZN</h1>
+            <p class="text-2xl md:text-4xl font-black text-black mt-6 leading-tight">عطور IYZN... نراهن على الجودة قبل السعر</p>
         </div>
-        <div class="flex gap-4">
-            <a href="https://www.instagram.com/iyznperfume" target="_blank"><i class="fa-brands fa-instagram text-2xl"></i></a>
-            <i class="fa-regular fa-user text-2xl"></i>
+        <div class="flex gap-6 items-center">
+            <a href="https://wa.me/962795748326" target="_blank" class="text-green-600 text-3xl"><i class="fa-brands fa-whatsapp"></i></a>
+            <i class="fa-regular fa-user text-3xl"></i>
         </div>
     </div>
 </header>
 
 <div class="hero-slider">
-    <div class="slide active"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=1600"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1543473304-a64d1db98244?auto=format&fit=crop&q=80&w=1600"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1583467875263-d50dec37a88c?auto=format&fit=crop&q=80&w=1600"></div>
+    <div class="slide active"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1600"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1543473304-a64d1db98244?q=80&w=1600"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1600"></div>
 </div>
 
 <main class="max-w-7xl mx-auto px-6 py-20">
-    <div id="product-list" class="grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div id="product-list" class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
         </div>
 </main>
 
 <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-white shadow-2xl cart-sidebar cart-closed flex flex-col">
-    <div class="p-6 border-b flex justify-between items-center bg-gray-50">
-        <h3 class="text-2xl font-black uppercase italic">Shopping Bag</h3>
+    <div class="p-6 border-b flex justify-between items-center">
+        <h3 class="text-2xl font-black uppercase italic">حقيبة التسوق</h3>
         <button onclick="toggleCart(false)" class="text-4xl">&times;</button>
     </div>
     
     <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
         </div>
 
-    <div class="p-8 border-t bg-white">
+    <div class="p-8 border-t bg-gray-50">
         <div class="flex justify-between text-3xl font-black mb-8">
             <span>المجموع:</span>
             <span><span id="cart-total">0</span> دينار</span>
         </div>
 
-        <h4 class="font-black mb-4">طريقة الدفع:</h4>
-        <div class="grid grid-cols-3 gap-3 mb-8" id="payment-methods">
-            <div onclick="setPayment(this, 'Apple Pay')" class="payment-method"><i class="fa-brands fa-apple-pay text-2xl"></i><br>Apple Pay</div>
-            <div onclick="setPayment(this, 'مدى / Mada')" class="payment-method flex flex-col items-center justify-center"><span>MADA</span></div>
-            <div onclick="setPayment(this, 'فيزا')" class="payment-method"><i class="fa-brands fa-cc-visa text-2xl"></i><br>Visa</div>
-            <div onclick="setPayment(this, 'ماستر كارد')" class="payment-method"><i class="fa-brands fa-cc-mastercard text-2xl"></i><br>MasterCard</div>
+        <h4 class="font-black mb-4 text-right">طريقة الدفع:</h4>
+        <div class="grid grid-cols-3 gap-2 mb-8" id="payment-methods">
+            <div onclick="setPayment(this, 'Apple Pay')" class="payment-method flex flex-col items-center"><i class="fa-brands fa-apple-pay text-xl"></i><span>Apple Pay</span></div>
+            <div onclick="setPayment(this, 'مدى')" class="payment-method flex items-center justify-center">مدى</div>
+            <div onclick="setPayment(this, 'فيزا')" class="payment-method flex flex-col items-center"><i class="fa-brands fa-cc-visa text-xl"></i><span>فيزا</span></div>
+            <div onclick="setPayment(this, 'ماستر كارد')" class="payment-method flex flex-col items-center"><i class="fa-brands fa-cc-mastercard text-xl"></i><span>ماستر كارد</span></div>
             <div onclick="setPayment(this, 'كليك / CliQ')" class="payment-method flex items-center justify-center">CliQ</div>
-            <div onclick="setPayment(this, 'كاش')" class="payment-method flex items-center justify-center">كاش</div>
+            <div onclick="setPayment(this, 'كاش عند الاستلام')" class="payment-method flex items-center justify-center">كاش</div>
         </div>
 
-        <button onclick="checkout()" class="w-full bg-black text-white py-5 rounded-full font-black text-xl tracking-widest uppercase hover:bg-gray-800 transition shadow-xl">إتمام الطلب عبر واتساب</button>
+        <button onclick="checkout()" class="w-full bg-black text-white py-5 rounded-full font-black text-xl hover:bg-gray-800 transition">تأكيد الطلب (واتساب)</button>
     </div>
 </div>
 
-<footer class="bg-gray-50 py-20 px-8 text-center border-t">
-    <div class="flex justify-center gap-10 text-3xl mb-8 text-gray-800">
+<footer class="bg-black text-white py-16 px-8 text-center">
+    <div class="flex justify-center gap-10 text-4xl mb-8">
         <a href="https://www.instagram.com/iyznperfume" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.tiktok.com/@iyznperfume" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.facebook.com/iyznperfume" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.facebook.com/iyznperfume" target="_blank"><i class="fa-brands fa-facebook-f text-3xl"></i></a>
     </div>
-    <p class="font-black text-gray-400">© 2026 IYZN PERFUMES | iyznperfume@gmail.com</p>
+    <p class="font-bold text-gray-500 italic">© 2026 IYZN PERFUMES | نراهن على الجودة قبل السعر</p>
 </footer>
 
 <script>
-    // بيانات المنتجات بالصور والأسعار (7 دنانير)
+    // المنتجات بـ 7 دنانير
     const products = [
-        { id: 1, name: "عطر رويال - ROYAL", price: 7, img: "https://images.unsplash.com/photo-1543473304-a64d1db98244?w=800" },
-        { id: 2, name: "عطر عود - OUD INTENSE", price: 7, img: "https://images.unsplash.com/photo-1583467875263-d50dec37a88c?w=800" },
-        { id: 3, name: "عطر نايت - NIGHT FALL", price: 7, img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800" },
-        { id: 4, name: "عطر لور - LURE", price: 7, img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800" },
-        { id: 5, name: "عطر جولد - GOLD", price: 7, img: "https://images.unsplash.com/photo-1557170334-a7c3a4f22038?w=800" },
-        { id: 6, name: "عطر سيلفر - SILVER", price: 7, img: "https://images.unsplash.com/photo-1616948055600-8f940d0218cc?w=800" }
+        { id: 1, name: "عطر IYZN - ROYAL", price: 7, img: "https://images.unsplash.com/photo-1543473304-a64d1db98244?w=800" },
+        { id: 2, name: "عطر IYZN - OUD", price: 7, img: "https://images.unsplash.com/photo-1583467875263-d50dec37a88c?w=800" },
+        { id: 3, name: "عطر IYZN - NIGHT", price: 7, img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800" },
+        { id: 4, name: "عطر IYZN - LURE", price: 7, img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800" },
+        { id: 5, name: "عطر IYZN - GOLD", price: 7, img: "https://images.unsplash.com/photo-1557170334-a7c3a4f22038?w=800" },
+        { id: 6, name: "عطر IYZN - PURE", price: 7, img: "https://images.unsplash.com/photo-1616948055600-8f940d0218cc?w=800" }
     ];
 
     let cart = [];
-    let selectedPayment = "";
+    let paymentMethod = "";
 
-    // عرض المنتجات
     function renderProducts() {
         const grid = document.getElementById('product-list');
         grid.innerHTML = products.map(p => `
-            <div class="product-card group text-center bg-white border border-gray-100 p-4 rounded-[40px] shadow-sm hover:shadow-xl transition-all duration-500">
-                <div class="overflow-hidden rounded-[30px] mb-6 h-[400px]">
-                    <img src="${p.img}" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+            <div class="product-card group">
+                <div class="overflow-hidden rounded-[40px] mb-6 h-[450px]">
+                    <img src="${p.img}" class="w-full h-full object-cover">
                 </div>
-                <h4 class="text-2xl font-black mb-2 uppercase italic tracking-tighter">${p.name}</h4>
-                <p class="text-3xl font-black mb-6 text-black">${p.price} دينار</p>
-                <button onclick="addToCart(${p.id})" class="bg-black text-white w-full py-4 rounded-full font-black text-lg hover:bg-gray-700 transition active:scale-95 shadow-lg">أضف للسلة</button>
+                <h4 class="text-2xl font-black mb-2 uppercase italic">${p.name}</h4>
+                <p class="text-3xl font-black mb-6">${p.price} دينار</p>
+                <button onclick="addToCart(${p.id})" class="bg-black text-white w-full py-4 rounded-full font-black text-lg hover:scale-105 transition">أضف للسلة</button>
             </div>
         `).join('');
     }
 
-    // إدارة السلة
     function addToCart(id) {
         cart.push(products.find(p => p.id === id));
         updateUI();
         toggleCart(true);
     }
 
-    function removeItem(index) {
-        cart.splice(index, 1);
+    function removeItem(idx) {
+        cart.splice(idx, 1);
         updateUI();
     }
 
     function updateUI() {
         document.getElementById('cart-count').innerText = cart.length;
-        const itemsContainer = document.getElementById('cart-items');
         let total = 0;
-        
-        if(cart.length === 0) {
-            itemsContainer.innerHTML = `<p class="text-center py-20 text-gray-400 font-bold uppercase tracking-widest">السلة فارغة</p>`;
-            document.getElementById('cart-total').innerText = "0";
-            return;
-        }
-
-        itemsContainer.innerHTML = cart.map((item, index) => {
+        document.getElementById('cart-items').innerHTML = cart.map((item, index) => {
             total += item.price;
-            return `
-                <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-3xl">
-                    <img src="${item.img}" class="w-20 h-20 object-cover rounded-2xl shadow-sm">
-                    <div class="flex-1">
-                        <h5 class="font-black text-sm uppercase">${item.name}</h5>
-                        <p class="font-bold text-gray-600">${item.price} دينار</p>
-                    </div>
-                    <button onclick="removeItem(${index})" class="bg-white w-8 h-8 rounded-full shadow text-red-500 flex items-center justify-center hover:bg-red-50"><i class="fa-solid fa-trash-can text-xs"></i></button>
-                </div>
-            `;
+            return `<div class="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl">
+                <img src="${item.img}" class="w-16 h-16 rounded-xl object-cover">
+                <div class="flex-1 font-black text-sm">${item.name}</div>
+                <button onclick="removeItem(${index})" class="text-red-500 font-bold px-2">حذف</button>
+            </div>`;
         }).join('');
         document.getElementById('cart-total').innerText = total;
     }
@@ -184,43 +170,35 @@
         show ? sidebar.classList.add('cart-open') : sidebar.classList.remove('cart-open');
     }
 
-    // تفعيل وسيلة الدفع
     function setPayment(el, name) {
         document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
         el.classList.add('active');
-        selectedPayment = name;
+        paymentMethod = name;
     }
 
-    // الواتساب النهائي
     function checkout() {
         if(cart.length === 0) return alert("سلتك فارغة!");
-        if(!selectedPayment) return alert("يرجى اختيار طريقة الدفع أولاً!");
+        if(!paymentMethod) return alert("اختر طريقة الدفع أولاً!");
         
-        let total = document.getElementById('cart-total').innerText;
-        let msg = `✨ طلب جديد من متجر IYZN ✨%0A%0A`;
-        msg += `💳 طريقة الدفع: ${selectedPayment}%0A`;
-        msg += `💰 المجموع: ${total} دينار%0A%0A`;
-        msg += `📦 المنتجات:%0A`;
+        let msg = `✨ طلب جديد IYZN ✨%0A`;
+        msg += `💰 الإجمالي: ${document.getElementById('cart-total').innerText} دينار%0A`;
+        msg += `💳 الدفع: ${paymentMethod}%0A%0A📦 المنتجات:%0A`;
         cart.forEach((i, idx) => msg += `${idx+1}. ${i.name}%0A`);
         
         window.open(`https://wa.me/962795748326?text=${msg}`);
     }
 
     // السلايدر
-    let slideIndex = 0;
-    function autoSlider() {
+    let sIdx = 0;
+    function startSlider() {
         let slides = document.querySelectorAll(".slide");
         slides.forEach(s => s.classList.remove("active"));
-        slideIndex++;
-        if (slideIndex > slides.length) slideIndex = 1;
-        slides[slideIndex-1].classList.add("active");
-        setTimeout(autoSlider, 4000);
+        sIdx = (sIdx + 1) % slides.length;
+        slides[sIdx].classList.add("active");
+        setTimeout(startSlider, 4000);
     }
 
-    window.onload = () => {
-        renderProducts();
-        autoSlider();
-    };
+    window.onload = () => { renderProducts(); startSlider(); };
 </script>
 </body>
 </html>
