@@ -1,282 +1,201 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IYZN Perfumes</title>
-
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-
-<!-- Font Awesome صحيح -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-<style>
-body{font-family:'Cairo',sans-serif;background:#fff;color:#000;margin:0}
-
-/* شريط متحرك مستمر */
-.marquee{overflow:hidden;background:#000;color:#fff}
-.marquee-track{
-display:flex;
-width:max-content;
-animation:scroll 40s linear infinite;
-}
-.marquee-track span{
-font-weight:900;
-font-size:18px;
-margin:0 80px;
-white-space:nowrap;
-}
-@keyframes scroll{
-0%{transform:translateX(0)}
-100%{transform:translateX(-50%)}
-}
-
-/* سلة */
-.cart{
-position:fixed;
-top:0;
-right:-420px;
-width:400px;
-height:100%;
-background:#fff;
-box-shadow:-20px 0 50px rgba(0,0,0,.15);
-transition:.4s;
-z-index:5000;
-padding:30px;
-overflow:auto
-}
-.cart.active{right:0}
-
-.card{
-transition:.4s;
-border-radius:25px
-}
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 25px 60px rgba(0,0,0,.1)
-}
-
-.hero-img{
-height:100vh;
-object-fit:cover;
-width:100%
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IYZN Perfumes | المتجر الرسمي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style>
+        body { font-family: 'Cairo', sans-serif; scroll-behavior: smooth; background-color: #fcfcfc; }
+        .cart-sidebar { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .cart-open { transform: translateX(0); }
+        .cart-closed { transform: translateX(100%); }
+        .product-card:hover img { transform: scale(1.05); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #000; border-radius: 10px; }
+    </style>
 </head>
+<body class="overflow-x-hidden">
 
-<body>
-
-<!-- الشريط -->
-<div class="marquee py-4">
-<div class="marquee-track">
-<span>اشتري عطر بـ10 واحصل على الثاني مجاناً</span>
-<span>توصيل مجاني للطلبات فوق 25 دينار</span>
-<span>اشتري عطر بـ10 واحصل على الثاني مجاناً</span>
-<span>توصيل مجاني للطلبات فوق 25 دينار</span>
-</div>
+<div class="bg-black text-white text-center py-2 text-sm font-bold tracking-wider">
+    شحن مجاني للطلبات فوق 300 ريال 🚚
 </div>
 
-<header class="flex justify-between items-center px-12 py-6 border-b">
-<h1 class="text-2xl font-black tracking-widest">IYZN</h1>
-<div class="flex gap-8 text-lg">
-<i class="fa fa-user cursor-pointer" onclick="openLogin()"></i>
-<i class="fa fa-shopping-bag cursor-pointer" onclick="toggleCart()"></i>
-</div>
-</header>
+<nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-5">
+        <button onclick="openLogin()" class="hover:text-gray-600 transition">
+            <i class="fa-regular fa-user text-xl"></i>
+        </button>
+        <div class="relative cursor-pointer" onclick="toggleCart(true)">
+            <i class="fa-solid fa-bag-shopping text-xl"></i>
+            <span id="cart-count" class="absolute -top-2 -right-2 bg-black text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+        </div>
+    </div>
+    <h1 class="text-3xl font-black tracking-tighter cursor-pointer" onclick="location.reload()">IYZN</h1>
+    <i class="fa-solid fa-bars text-xl cursor-pointer md:hidden"></i>
+    <div class="hidden md:flex gap-8 font-bold text-sm">
+        <a href="#" class="hover:underline">الرئيسية</a>
+        <a href="#products" class="hover:underline">العطور</a>
+        <a href="#" class="hover:underline">قصتنا</a>
+    </div>
+</nav>
 
-<section class="relative">
-<img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" class="hero-img">
-<div class="absolute inset-0 bg-black/50 flex items-center px-20">
-<div class="text-white max-w-2xl">
-<h2 class="text-[80px] font-black leading-tight mb-6">
-عطور IYZN
-</h2>
-<p class="text-2xl font-bold mb-10">
-نراهن على الجودة قبل السعر
-</p>
-<button class="bg-white text-black px-12 py-4 rounded-full font-bold text-lg">
-تسوق الآن
-</button>
-</div>
-</div>
+<section class="h-[80vh] relative flex items-center justify-center overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1583467875263-d50dec37a88c?q=80&w=1600" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative z-10 text-center text-white px-4">
+        <h2 class="text-6xl md:text-8xl font-black mb-6">IYZN</h2>
+        <p class="text-xl md:text-2xl mb-10 font-light">فخامة العطر.. تعيد تعريف الحضور</p>
+        <a href="#products" class="bg-white text-black px-12 py-4 rounded-full font-black text-lg hover:bg-gray-200 transition">تسوق المجموعة</a>
+    </div>
 </section>
 
-<section class="px-16 py-20">
-<div id="products" class="grid md:grid-cols-3 gap-12"></div>
-</section>
+<main id="products" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-16">
+        <h3 class="text-4xl font-black mb-4">تشكيلتنا المختارة</h3>
+        <p class="text-gray-500">عطور صُممت لتدوم طويلاً بتركيز عالٍ</p>
+    </div>
+    
+    <div id="product-list" class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        </div>
+</main>
 
-<!-- السلة -->
-<div id="cart" class="cart">
-<h2 class="text-2xl font-bold mb-6">سلة الشراء</h2>
-<ul id="cartItems" class="mb-6"></ul>
+<div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-white z-[100] shadow-2xl cart-sidebar cart-closed flex flex-col">
+    <div class="p-6 border-b flex justify-between items-center">
+        <h3 class="text-2xl font-black">سلة التسوق</h3>
+        <button onclick="toggleCart(false)" class="text-3xl">&times;</button>
+    </div>
+    
+    <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-6">
+        </div>
 
-<select id="city" onchange="updateTotal()" class="border p-3 w-full mb-4">
-<option value="2">الزرقاء - 2 دينار</option>
-<option value="3">عمان وباقي الأردن - 3 دينار</option>
-</select>
+    <div class="p-6 border-t bg-gray-50">
+        <div class="flex justify-between text-xl font-black mb-6">
+            <span>الإجمالي:</span>
+            <span id="cart-total">0</span><span> ر.س</span>
+        </div>
+        
+        <div class="space-y-3">
+            <button onclick="processPayment('Apple Pay')" class="w-full bg-black text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-800">
+                <i class="fa-brands fa-apple-pay text-3xl"></i> دفع بواسطة Apple Pay
+            </button>
+            <button onclick="processPayment('Mada')" class="w-full border-2 border-black py-4 rounded-xl font-bold hover:bg-black hover:text-white transition">
+                الدفع بواسطة بطاقة مدى / فيزا
+            </button>
+        </div>
+    </div>
+</div>
 
-<p id="total" class="font-bold text-lg mb-6"></p>
-
-<button onclick="checkout()" class="bg-black text-white w-full py-3 rounded-full">
-إتمام الطلب عبر واتساب
-</button>
+<div id="login-modal" class="fixed inset-0 bg-black/70 z-[200] hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md p-8 rounded-3xl shadow-2xl relative">
+        <button onclick="closeLogin()" class="absolute top-4 left-4 text-2xl">&times;</button>
+        <h2 class="text-3xl font-black mb-6 text-center">دخول / تسجيل</h2>
+        <div class="space-y-4">
+            <input type="tel" id="user-phone" placeholder="رقم الجوال (05XXXXXXXX)" class="w-full border-2 p-4 rounded-2xl focus:border-black outline-none text-right font-bold">
+            <button onclick="alert('سيرسل لك كود التحقق OTP قريباً')" class="w-full bg-black text-white py-4 rounded-2xl font-black">إرسال كود التحقق</button>
+        </div>
+    </div>
 </div>
 
 <script>
-// بيانات العطور
-const products=[
-{name:"Oud Royal",price:7,img:"https://images.unsplash.com/photo-1594035910387-fea47794261f"},
-{name:"Black Intense",price:7,img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519"},
-{name:"White Musk",price:7,img:"https://images.unsplash.com/photo-1585386959984-a41552231658"},
-{name:"Amber Gold",price:7,img:"https://images.unsplash.com/photo-1615634260167-c8cdede054de"}
-];
+    // بيانات المنتجات (لوحة التحكم المصغرة)
+    const products = [
+        { id: 1, name: "IYZN - Pure Oud", price: 350, image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500" },
+        { id: 2, name: "IYZN - Midnight", price: 280, image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=500" },
+        { id: 3, name: "IYZN - Musk White", price: 190, image: "https://images.unsplash.com/photo-1592914610354-fd359ee45744?w=500" }
+    ];
 
-let cart=[];
+    let cart = JSON.parse(localStorage.getItem('iyzn_cart')) || [];
 
-// عرض المنتجات
-function render(){
-let container=document.getElementById("products");
-container.innerHTML="";
-products.forEach(p=>{
-container.innerHTML+=`
-<div class="card p-6 text-center bg-white">
-<img src="${p.img}" class="h-72 mx-auto object-contain mb-6">
-<h3 class="font-bold text-xl mb-2">${p.name}</h3>
-<div class="font-bold mb-4">${p.price} دينار</div>
-<button onclick="add('${p.name}',${p.price})"
-class="bg-black text-white w-full py-3 rounded-full">
-أضف للسلة
-</button>
-</div>
-`;
-});
-}
-render();
+    // وظيفة عرض المنتجات
+    function displayProducts() {
+        const list = document.getElementById('product-list');
+        list.innerHTML = products.map(p => `
+            <div class="product-card group cursor-pointer bg-white p-4 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl transition">
+                <div class="overflow-hidden rounded-2xl mb-6 h-80">
+                    <img src="${p.image}" class="w-full h-full object-cover transition duration-500">
+                </div>
+                <h4 class="text-xl font-black mb-2">${p.name}</h4>
+                <div class="flex justify-between items-center">
+                    <span class="text-2xl font-bold text-gray-900">${p.price} ر.س</span>
+                    <button onclick="addToCart(${p.id})" class="bg-black text-white px-6 py-2 rounded-full font-bold hover:scale-105 transition active:scale-95">أضف للسلة</button>
+                </div>
+            </div>
+        `).join('');
+    }
 
-// إضافة للسلة
-function add(name,price){
-cart.push({name,price});
-updateTotal();
-toggleCart();
-}
+    // إدارة السلة
+    function addToCart(id) {
+        const product = products.find(p => p.id === id);
+        cart.push(product);
+        updateUI();
+        toggleCart(true);
+    }
 
-// تحديث السلة والمجموع
-function updateTotal(){
-let list=document.getElementById("cartItems");
-list.innerHTML="";
-let total=0;
-cart.forEach(i=>{
-list.innerHTML+=`<li class="mb-2">${i.name} - ${i.price} دينار</li>`;
-total+=i.price;
-});
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateUI();
+    }
 
-// خصم تلقائي لكل عطرين
-let discount = Math.floor(cart.length / 2) * 7;
-total -= discount;
+    function updateUI() {
+        localStorage.setItem('iyzn_cart', JSON.stringify(cart));
+        document.getElementById('cart-count').innerText = cart.length;
+        
+        const cartList = document.getElementById('cart-items');
+        const totalEl = document.getElementById('cart-total');
+        
+        if (cart.length === 0) {
+            cartList.innerHTML = `<p class="text-center text-gray-400 mt-10">سلة المشتريات فارغة</p>`;
+            totalEl.innerText = "0";
+            return;
+        }
 
-let shipping=parseInt(document.getElementById("city").value);
-if(total>=25) shipping=0;
+        let total = 0;
+        cartList.innerHTML = cart.map((item, index) => {
+            total += item.price;
+            return `
+                <div class="flex items-center gap-4 bg-white p-3 rounded-2xl border shadow-sm">
+                    <img src="${item.image}" class="w-20 h-20 object-cover rounded-xl">
+                    <div class="flex-1">
+                        <h5 class="font-black text-sm">${item.name}</h5>
+                        <p class="font-bold">${item.price} ر.س</p>
+                    </div>
+                    <button onclick="removeFromCart(${index})" class="text-red-500 p-2"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
+        }).join('');
+        totalEl.innerText = total;
+    }
 
-total+=shipping;
+    // التحكم في النوافذ
+    function toggleCart(show) {
+        const sidebar = document.getElementById('cart-sidebar');
+        show ? sidebar.classList.add('cart-open') : sidebar.classList.remove('cart-open');
+    }
 
-document.getElementById("total").innerText="المجموع: "+total+" دينار";
-}
+    function openLogin() { document.getElementById('login-modal').classList.remove('hidden'); }
+    function closeLogin() { document.getElementById('login-modal').classList.add('hidden'); }
 
-// فتح وغلق السلة
-function toggleCart(){
-document.getElementById("cart").classList.toggle("active");
-}
+    // محاكاة بوابة الدفع
+    function processPayment(method) {
+        if(cart.length === 0) return alert("السلة فارغة!");
+        
+        const total = document.getElementById('cart-total').innerText;
+        alert(`جاري تحويلك لبوابة دفع ${method} الآمنة...\nالمبلغ المطلوب: ${total} ريال`);
+        
+        // هنا يتم الربط مع API البنك (مثل Moyasar)
+        // بعد نجاح الدفع نقوم بتصفير السلة
+        // cart = [];
+        // updateUI();
+    }
 
-// تسجيل دخول وهمي
-function openLogin(){
-alert("ميزة تسجيل الدخول تحتاج ربط Backend لاحقاً");
-}
-
-// Checkout عبر واتساب
-function checkout(){
-let shipping=parseInt(document.getElementById("city").value);
-let msg="طلب جديد:%0A";
-cart.forEach(i=>msg+=i.name+" - "+i.price+" دينار%0A");
-msg+="الشحن: "+shipping+" دينار";
-window.open("https://wa.me/962795748326?text="+msg);
-}
+    window.onload = () => {
+        displayProducts();
+        updateUI();
+    };
 </script>
-
-<!-- FOOTER -->
-<footer class="bg-black text-white py-16 px-12">
-<div class="grid md:grid-cols-3 gap-12 mb-12">
-
-<!-- عن المتجر -->
-<div>
-<h3 class="text-2xl font-black mb-6">IYZN</h3>
-<p class="text-gray-400 leading-7">
-عطور IYZN... نراهن على الجودة قبل السعر  
-نقدم تجربة عطرية فاخرة بثبات يدوم طويلاً.
-</p>
-</div>
-
-<!-- التواصل -->
-<div>
-<h3 class="text-xl font-bold mb-6">تواصل معنا</h3>
-<p class="mb-3">📱 واتساب: 
-<a href="https://wa.me/962795748326" target="_blank" class="hover:underline">
-+962795748326
-</a>
-</p>
-<p class="mb-3">📧 البريد:
-<a href="mailto:iyznperfume@gmail.com" class="hover:underline">
-iyznperfume@gmail.com
-</a>
-</p>
-<div class="flex gap-6 mt-6 text-2xl">
-<a href="https://x.com/iyznperfume" target="_blank"><i class="fab fa-x-twitter"></i></a>
-<a href="https://www.tiktok.com/@iyznperfume" target="_blank"><i class="fab fa-tiktok"></i></a>
-<a href="https://www.instagram.com/iyznperfume" target="_blank"><i class="fab fa-instagram"></i></a>
-<a href="https://www.facebook.com/iyznperfume" target="_blank"><i class="fab fa-facebook"></i></a>
-</div>
-</div>
-
-<!-- وسائل الدفع -->
-<div>
-<h3 class="text-xl font-bold mb-6">وسائل الدفع</h3>
-<div class="grid grid-cols-2 gap-4 text-lg">
-
-<div class="border border-gray-700 py-3 text-center rounded-lg">
-<i class="fab fa-cc-visa text-3xl mb-2"></i>
-<p>Visa</p>
-</div>
-
-<div class="border border-gray-700 py-3 text-center rounded-lg">
-<i class="fab fa-cc-mastercard text-3xl mb-2"></i>
-<p>MasterCard</p>
-</div>
-
-<div class="border border-gray-700 py-3 text-center rounded-lg">
-<i class="fa fa-money-bill-wave text-3xl mb-2"></i>
-<p>Cash</p>
-</div>
-
-<div class="border border-gray-700 py-3 text-center rounded-lg">
-<i class="fa fa-mobile-screen text-3xl mb-2"></i>
-<p>CliQ</p>
-</div>
-
-<div class="border border-gray-700 py-3 text-center rounded-lg col-span-2">
-<i class="fa fa-wallet text-3xl mb-2"></i>
-<p>محفظة إلكترونية</p>
-</div>
-
-</div>
-</div>
-
-</div>
-<hr class="border-gray-800 mb-6">
-<p class="text-center text-gray-500 text-sm">
-© 2026 IYZN Perfumes - جميع الحقوق محفوظة
-</p>
-</footer>
 
 </body>
 </html>
