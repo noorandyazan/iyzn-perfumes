@@ -10,173 +10,156 @@
     <style>
         body { font-family: 'Cairo', sans-serif; background-color: #fff; color: #000; overflow-x: hidden; }
         
-        /* الشريط المتحرك */
-        .marquee { background: #000; color: #fff; padding: 12px 0; overflow: hidden; position: relative; }
-        .marquee-content { display: flex; animation: marquee-scroll 25s linear infinite; white-space: nowrap; width: max-content; }
-        .marquee-content span { font-weight: 900; font-size: 14px; margin: 0 60px; }
-        @keyframes marquee-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        /* الشريط المتحرك اللانهائي */
+        .marquee { background: #000; color: #fff; padding: 12px 0; overflow: hidden; display: flex; }
+        .marquee-track { display: flex; width: max-content; animation: scroll 30s linear infinite; }
+        .marquee-track span { font-weight: 900; font-size: 16px; padding: 0 50px; white-space: nowrap; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        .product-card { border: 1px solid #f2f2f2; transition: all 0.4s ease; border-radius: 20px; overflow: hidden; }
-        .product-card:hover { border-color: #000; transform: translateY(-8px); shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .cart-sidebar { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        /* ستايل المنتجات */
+        .product-card img { transition: 0.5s ease; width: 100%; height: 350px; object-fit: cover; }
+        .product-card:hover img { transform: scale(1.05); }
+
+        /* السلايدر العلوي */
+        .hero-slide { display: none; height: 75vh; width: 100%; object-fit: cover; animation: fade 1.5s; }
+        @keyframes fade { from {opacity: .4} to {opacity: 1} }
+
+        .cart-sidebar { transition: transform 0.4s ease-in-out; }
         .cart-open { transform: translateX(0); }
         .cart-closed { transform: translateX(100%); }
+        
+        .payment-active { border-color: #000 !important; background: #f9f9f9; }
     </style>
 </head>
 <body>
 
 <div class="marquee">
-    <div class="marquee-content">
-        <span>✨ عرض خاص: اشتري عطر بـ 10 دنانير واحصل على الثاني مجاناً</span>
-        <span>🚚 توصيل مجاني للطلبات فوق 25 دينار</span>
-        <span>✨ عرض خاص: اشتري عطر بـ 10 دنانير واحصل على الثاني مجاناً</span>
-        <span>🚚 توصيل مجاني للطلبات فوق 25 دينار</span>
-        <span>✨ عرض خاص: اشتري عطر بـ 10 دنانير واحصل على الثاني مجاناً</span>
-        <span>🚚 توصيل مجاني للطلبات فوق 25 دينار</span>
+    <div class="marquee-track">
+        <span>اشتري عطر بـ 10 دنانير واحصل على الثاني مجاناً ✨</span>
+        <span>توصيل مجاني للطلبات فوق 25 دينار 🚚</span>
+        <span>اشتري عطر بـ 10 دنانير واحصل على الثاني مجاناً ✨</span>
+        <span>توصيل مجاني للطلبات فوق 25 دينار 🚚</span>
+        <span>اشتري عطر بـ 10 دنانير واحصل على الثاني مجاناً ✨</span>
+        <span>توصيل مجاني للطلبات فوق 25 دينار 🚚</span>
     </div>
 </div>
 
-<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b px-6 py-5 flex justify-between items-center">
-    <div class="flex items-center gap-6 flex-1">
-        <i class="fa-solid fa-magnifying-glass text-lg cursor-pointer"></i>
-        <div class="relative cursor-pointer" onclick="toggleCart(true)">
-            <i class="fa-solid fa-bag-shopping text-2xl"></i>
-            <span id="cart-count" class="absolute -top-2 -right-2 bg-black text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+<nav class="sticky top-0 z-50 bg-white border-b px-6 py-6 text-center shadow-sm">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex gap-5 flex-1">
+            <div class="relative cursor-pointer" onclick="toggleCart(true)">
+                <i class="fa-solid fa-bag-shopping text-2xl"></i>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-black text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+            </div>
         </div>
-    </div>
-    
-    <div class="text-center flex-1">
-        <h1 class="text-3xl md:text-4xl font-black tracking-widest cursor-pointer" onclick="location.reload()">IYZN</h1>
-        <p class="text-[9px] md:text-[11px] font-bold mt-1 uppercase tracking-wider text-gray-600">عطور IYZN... نراهن على الجودة قبل السعر</p>
-    </div>
+        
+        <div class="flex-1">
+            <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-2">IYZN</h1>
+            <p class="text-lg md:text-xl font-black text-gray-800 tracking-tight">عطور IYZN... نراهن على الجودة قبل السعر</p>
+        </div>
 
-    <div class="flex items-center justify-end gap-4 flex-1">
-        <i class="fa-regular fa-user text-xl cursor-pointer" onclick="openLogin()"></i>
+        <div class="flex-1 flex justify-end">
+            <i class="fa-regular fa-user text-2xl cursor-pointer" onclick="alert('قريباً: نظام الولاء وحسابات العملاء')"></i>
+        </div>
     </div>
 </nav>
 
-<section class="h-[65vh] relative flex items-center justify-center overflow-hidden">
-    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" class="absolute inset-0 w-full h-full object-cover">
-    <div class="absolute inset-0 bg-black/30"></div>
-    <div class="relative z-10 text-center text-white px-4">
-        <h2 class="text-5xl md:text-7xl font-black mb-6">فخامة تستحقها</h2>
-        <a href="#products" class="inline-block bg-white text-black px-12 py-4 rounded-full font-black hover:scale-105 transition">تسوق الآن</a>
-    </div>
+<section class="relative">
+    <img class="hero-slide w-full" src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=1600">
+    <img class="hero-slide w-full" src="https://images.unsplash.com/photo-1543473304-a64d1db98244?q=80&w=1600">
+    <img class="hero-slide w-full" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1600">
 </section>
 
 <main id="products" class="max-w-7xl mx-auto px-6 py-20">
-    <div class="text-center mb-16">
-        <h3 class="text-3xl font-black border-b-2 border-black inline-block pb-2">عطورنا المختارة</h3>
-    </div>
-    <div id="product-list" class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+    <div id="product-list" class="grid grid-cols-1 md:grid-cols-3 gap-12">
         </div>
 </main>
 
-<div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-[420px] bg-white z-[100] shadow-2xl cart-sidebar cart-closed flex flex-col">
-    <div class="p-6 border-b flex justify-between items-center bg-gray-50">
-        <h3 class="text-xl font-black">سلة المشتريات</h3>
-        <button onclick="toggleCart(false)" class="text-3xl hover:rotate-90 transition inline-block">&times;</button>
+<div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-white z-[100] shadow-2xl cart-sidebar cart-closed flex flex-col">
+    <div class="p-6 border-b flex justify-between items-center">
+        <h3 class="text-xl font-black italic">SHOPPING BAG</h3>
+        <button onclick="toggleCart(false)" class="text-3xl">&times;</button>
     </div>
-    <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
-        </div>
-    <div class="p-8 border-t bg-white">
-        <div class="flex justify-between text-2xl font-black mb-8">
-            <span>الإجمالي:</span>
+    
+    <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+
+    <div class="p-6 border-t bg-gray-50">
+        <div class="flex justify-between text-2xl font-black mb-6">
+            <span>المجموع:</span>
             <span><span id="cart-total">0</span> دينار</span>
         </div>
-        <button onclick="checkout()" class="w-full bg-black text-white py-5 rounded-full font-black text-lg shadow-lg hover:shadow-black/20 transition mb-6">إتمام الطلب عبر واتساب</button>
-        <div class="flex justify-center gap-5 text-2xl text-gray-300">
-            <i class="fa-brands fa-apple-pay"></i>
-            <i class="fa-brands fa-cc-visa"></i>
-            <i class="fa-brands fa-cc-mastercard"></i>
+        
+        <h4 class="font-bold mb-4 text-sm">اختر طريقة الدفع:</h4>
+        <div class="grid grid-cols-3 gap-2 mb-6" id="payment-options">
+            <div onclick="selectPayment(this)" class="border p-2 rounded-lg flex flex-col items-center cursor-pointer hover:border-black transition">
+                <i class="fa-brands fa-apple-pay text-2xl"></i><span class="text-[10px] mt-1">Apple Pay</span>
+            </div>
+            <div onclick="selectPayment(this)" class="border p-2 rounded-lg flex flex-col items-center cursor-pointer hover:border-black transition">
+                <i class="fa-brands fa-cc-visa text-2xl"></i><span class="text-[10px] mt-1">Visa</span>
+            </div>
+            <div onclick="selectPayment(this)" class="border p-2 rounded-lg flex flex-col items-center cursor-pointer hover:border-black transition">
+                <i class="fa-brands fa-cc-mastercard text-2xl"></i><span class="text-[10px] mt-1">MasterCard</span>
+            </div>
+            <div onclick="selectPayment(this)" class="border p-2 rounded-lg flex flex-col items-center cursor-pointer hover:border-black transition font-bold text-[10px]">MADA</div>
+            <div onclick="selectPayment(this)" class="border p-2 rounded-lg flex flex-col items-center cursor-pointer hover:border-black transition font-bold text-[10px]">CliQ</div>
+            <div onclick="selectPayment(this)" class="border p-2 rounded-lg flex flex-col items-center cursor-pointer hover:border-black transition font-bold text-[10px]">CASH</div>
         </div>
+
+        <button onclick="checkout()" class="w-full bg-black text-white py-5 rounded-full font-black text-lg">تأكيد الطلب</button>
     </div>
 </div>
 
-<footer class="bg-[#fafafa] border-t py-20 px-8">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
-        
-        <div class="text-center md:text-right">
-            <h4 class="text-3xl font-black mb-6 tracking-tighter">IYZN</h4>
-            <p class="text-gray-500 text-sm leading-8">
-                نحن في IYZN نقدم لك تجربة عطرية لا تُنسى. نراهن على الجودة العالية والزيوت الأصلية لنمنحك ثباتاً وفوحاناً يدوم طويلاً.
-            </p>
+<footer class="bg-white border-t py-16 px-8 text-center">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex justify-center gap-10 mb-10 text-3xl">
+            <a href="https://www.instagram.com/iyznperfume" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@iyznperfume" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/iyznperfume" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://wa.me/962795748326" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
-        
-        <div class="text-center">
-            <h4 class="font-black text-lg mb-8">تابعنا على</h4>
-            <div class="flex justify-center gap-8 text-3xl text-gray-800">
-                <a href="https://www.instagram.com/iyznperfume" target="_blank" class="hover:text-pink-600 transition"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@iyznperfume" target="_blank" class="hover:text-black transition"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://www.facebook.com/iyznperfume" target="_blank" class="hover:text-blue-600 transition"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://wa.me/962795748326" target="_blank" class="hover:text-green-600 transition"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
-            <div class="mt-8">
-                <a href="mailto:iyznperfume@gmail.com" class="text-gray-600 font-bold hover:underline">iyznperfume@gmail.com</a>
-            </div>
-        </div>
-
-        <div class="text-center md:text-left">
-            <h4 class="font-black text-lg mb-8">وسائل دفع آمنة</h4>
-            <div class="grid grid-cols-3 gap-3">
-                <div class="bg-white border p-3 rounded-xl flex justify-center items-center grayscale hover:grayscale-0 transition cursor-default">
-                    <i class="fa-brands fa-apple-pay text-3xl"></i>
-                </div>
-                <div class="bg-white border p-3 rounded-xl flex justify-center items-center grayscale hover:grayscale-0 transition cursor-default">
-                    <i class="fa-brands fa-cc-visa text-3xl"></i>
-                </div>
-                <div class="bg-white border p-3 rounded-xl flex justify-center items-center grayscale hover:grayscale-0 transition cursor-default">
-                    <i class="fa-brands fa-cc-mastercard text-3xl"></i>
-                </div>
-                <div class="bg-white border p-3 rounded-xl text-[10px] font-black flex justify-center items-center">MADA</div>
-                <div class="bg-white border p-3 rounded-xl text-[10px] font-black flex justify-center items-center">TABBY</div>
-                <div class="bg-white border p-3 rounded-xl text-[10px] font-black flex justify-center items-center">TAMARA</div>
-            </div>
-        </div>
-
-    </div>
-    
-    <div class="mt-20 pt-8 border-t border-gray-100 text-center">
-        <p class="text-gray-400 text-[11px] font-bold uppercase tracking-widest">© 2026 IYZN PERFUMES - جميع الحقوق محفوظة</p>
+        <p class="text-gray-400 font-bold mb-4 uppercase tracking-widest text-sm">© 2026 IYZN PERFUMES</p>
+        <p class="text-xs text-gray-300">📧 iyznperfume@gmail.com</p>
     </div>
 </footer>
 
 <script>
-    // قائمة العطور - السعر 7 دنانير
+    // 1. نظام السلايدر المتغير
+    let slideIndex = 0;
+    function showSlides() {
+        let slides = document.getElementsByClassName("hero-slide");
+        for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
+        slideIndex++;
+        if (slideIndex > slides.length) slideIndex = 1;
+        slides[slideIndex-1].style.display = "block";
+        setTimeout(showSlides, 4000); 
+    }
+    showSlides();
+
+    // 2. إدارة المنتجات (7 دنانير)
     const products = [
-        { id: 1, name: "عطر رويال - ROYAL", price: 7, img: "https://images.unsplash.com/photo-1543473304-a64d1db98244?w=500" },
-        { id: 2, name: "عطر لور - LURE", price: 7, img: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500" },
-        { id: 3, name: "عطر عود - OUD", price: 7, img: "https://images.unsplash.com/photo-1592914610354-fd359ee45744?w=500" },
-        { id: 4, name: "عطر مسك - MUSK", price: 7, img: "https://images.unsplash.com/photo-1616948055600-8f940d0218cc?w=500" },
-        { id: 5, name: "عطر نايت - NIGHT", price: 7, img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500" },
-        { id: 6, name: "عطر فريش - FRESH", price: 7, img: "https://images.unsplash.com/photo-1583467875263-d50dec37a88c?w=500" },
-        { id: 7, name: "عطر كلاسيك - CLASSIC", price: 7, img: "https://images.unsplash.com/photo-1557170334-a7c3a4f22038?w=500" },
-        { id: 8, name: "عطر جولد - GOLD", price: 7, img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500" }
+        { id: 1, name: "عطر IYZN - ROYAL", price: 7, img: "https://images.unsplash.com/photo-1543473304-a64d1db98244?w=800" },
+        { id: 2, name: "عطر IYZN - OUD", price: 7, img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800" },
+        { id: 3, name: "عطر IYZN - LURE", price: 7, img: "https://images.unsplash.com/photo-1592914610354-fd359ee45744?w=800" },
+        { id: 4, name: "عطر IYZN - NIGHT", price: 7, img: "https://images.unsplash.com/photo-1583467875263-d50dec37a88c?w=800" }
     ];
 
     let cart = [];
+    let selectedMethod = "";
 
-    // عرض المنتجات في الصفحة
     function renderProducts() {
         const grid = document.getElementById('product-list');
         grid.innerHTML = products.map(p => `
-            <div class="product-card bg-white p-4">
-                <div class="relative overflow-hidden rounded-xl mb-4 h-56 md:h-72">
-                    <img src="${p.img}" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+            <div class="product-card text-center">
+                <div class="overflow-hidden rounded-3xl mb-6">
+                    <img src="${p.img}">
                 </div>
-                <h4 class="font-bold text-sm md:text-base mb-2 h-12 flex items-center justify-center text-center uppercase tracking-tighter leading-tight">${p.name}</h4>
-                <div class="bg-gray-50 p-2 rounded-lg mb-4">
-                    <p class="font-black text-xl text-center">${p.price} <span class="text-sm font-bold">دينار</span></p>
-                </div>
-                <button onclick="addToCart(${p.id})" class="bg-black text-white w-full py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-800 active:scale-95 transition">إضافة للسلة</button>
+                <h4 class="text-xl font-bold mb-2 uppercase italic">${p.name}</h4>
+                <p class="text-2xl font-black mb-6">${p.price} دينار</p>
+                <button onclick="addToCart(${p.id})" class="bg-black text-white px-10 py-3 rounded-full font-bold hover:scale-105 transition">أضف للسلة</button>
             </div>
         `).join('');
     }
 
-    // إدارة السلة
     function addToCart(id) {
         const item = products.find(p => p.id === id);
         cart.push(item);
@@ -184,66 +167,46 @@
         toggleCart(true);
     }
 
+    function updateUI() {
+        document.getElementById('cart-count').innerText = cart.length;
+        const cartList = document.getElementById('cart-items');
+        let total = 0;
+        cartList.innerHTML = cart.map((item, index) => {
+            total += item.price;
+            return `<div class="flex items-center justify-between border-b pb-4">
+                <img src="${item.img}" class="w-16 h-16 rounded-lg object-cover">
+                <div class="flex-1 px-4 font-bold text-sm">${item.name}</div>
+                <button onclick="removeItem(${index})" class="text-red-500"><i class="fa-solid fa-xmark"></i></button>
+            </div>`;
+        }).join('');
+        document.getElementById('cart-total').innerText = total;
+    }
+
+    function selectPayment(el) {
+        document.querySelectorAll('#payment-options div').forEach(d => d.classList.remove('payment-active'));
+        el.classList.add('payment-active');
+        selectedMethod = el.innerText;
+    }
+
+    function toggleCart(open) {
+        document.getElementById('cart-sidebar').classList.toggle('cart-open', open);
+        document.getElementById('cart-sidebar').classList.toggle('cart-closed', !open);
+    }
+
     function removeItem(index) {
         cart.splice(index, 1);
         updateUI();
     }
 
-    function updateUI() {
-        document.getElementById('cart-count').innerText = cart.length;
-        const cartList = document.getElementById('cart-items');
-        let total = 0;
-        
-        if(cart.length === 0) {
-            cartList.innerHTML = `<div class="text-center py-20 text-gray-300 font-bold uppercase tracking-widest text-sm">السلة فارغة</div>`;
-            document.getElementById('cart-total').innerText = "0";
-            return;
-        }
-
-        cartList.innerHTML = cart.map((item, index) => {
-            total += item.price;
-            return `
-                <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-100">
-                    <img src="${item.img}" class="w-16 h-16 rounded-xl object-cover">
-                    <div class="flex-1">
-                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-tighter">IYZN Perfume</p>
-                        <h5 class="font-bold text-sm">${item.name}</h5>
-                        <p class="font-black text-sm text-black">${item.price} دينار</p>
-                    </div>
-                    <button onclick="removeItem(${index})" class="text-gray-400 hover:text-red-500 transition"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            `;
-        }).join('');
-        
-        document.getElementById('cart-total').innerText = total;
-    }
-
-    function toggleCart(open) {
-        const sidebar = document.getElementById('cart-sidebar');
-        open ? sidebar.classList.add('cart-open') : sidebar.classList.remove('cart-open');
-    }
-
-    function openLogin() {
-        alert("نظام الحسابات سيتم تفعيله قريباً بالتعاون مع Firebase لضمان أمان بياناتكم.");
-    }
-
-    // إتمام الطلب وإرساله للواتساب بالروابط الجديدة
     function checkout() {
         if(cart.length === 0) return alert("السلة فارغة!");
-        let total = document.getElementById('cart-total').innerText;
-        let msg = "✨ طلب جديد من متجر IYZN ✨%0A%0A";
-        msg += "العطور المطلوبة:%0A";
-        cart.forEach((i, idx) => msg += `${idx+1}. ${i.name} - ${i.price} دينار%0A`);
-        msg += `%0A------------------------%0A`;
-        msg += `💰 الإجمالي النهائي: ${total} دينار%0A`;
-        msg += `------------------------%0A`;
-        msg += `يرجى تزويدي بتفاصيل التوصيل (الاسم، المدينة، العنوان).`;
+        if(!selectedMethod) return alert("يرجى اختيار طريقة الدفع أولاً!");
         
+        let msg = `طلب جديد من متجر IYZN%0Aالطريقة المختارة: ${selectedMethod}%0Aالإجمالي: ${document.getElementById('cart-total').innerText} دينار`;
         window.open(`https://wa.me/962795748326?text=${msg}`);
     }
 
     window.onload = renderProducts;
 </script>
-
 </body>
 </html>
