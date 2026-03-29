@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+    <haed>
+        <!---comment title this is usful user experince-->
+        <title>عطور IYZN... نراهن على الجودة قبل السعر 
+            Welcome to our store 
+        </title>
+        <meta charset="UTF-8"> <!----language---->
+        <!-- responsive in future -->
+        <meta data-rh="true" name="description" content="IYZN is a perfume store offering luxurious scents with strong longevity and projection, crafted to express your personality and leave a lasting impression.">
+        <meta name="COPYRIGHT" content="Copyright (c) 2026 "/>
+        <style>
+
+            /**margin: space outside border
+            padding: space inside border*/
+            header {
+                background: #ccc;
+
+            }
+            nav{
+                background: #000;
+            }
+            h1{
+                background: #bf459a;
+            }
+            main{
+                background-color: #9b59b6;
+            }
+            ul{
+                list-style: none;
+            }
+
+        </style>
+    </head>
+<body>
+    <a href="index.html"> <b> index  </b></a>
+    <h1> Forms </h1>
+     <ul>
+        <li> First</li>
+        <li> Second</li>
+        <li> Third</li>
+
+    </ul>
+    <ol>
+        <li> First</li>
+        <li> Second</li>
+        <li> Third</li>
+
+    </ol>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Perfumes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="left">
+                <span>English</span>
+                <span>| Change Country</span>
+            </div>
+            <div class="right">
+                <span>cs@matchperfumes.com</span>
+            </div>
+        </div>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="Match Perfumes Logo">
+            </div>
+            <ul>
+                <li><a href="#">Ramadan offers</a></li>
+                <li><a href="#">Perfumes</a></li>
+                <li><a href="#">Gifts and Sets</a></li>
+                <li><a href="#">Solid Perfumes</a></li>
+                <li><a href="#">Home Fresheners</a></li>
+                <li><a href="#">New Arrival</a></li>
+                <li><a href="#">Match Beauty</a></li>
+            </ul>
+            <div class="icons">
+                <i class="search-icon"></i>
+                <i class="account-icon"></i>
+                <i class="cart-icon">
+                    <span class="cart-count">0</span>
+                </i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <img src="hero-image.png" alt="Makeup Products">
+            <div class="hero-content">
+                <h1>Here to Win</h1>
+                <h2>Ultra Black Eyeliner</h2>
+                <p>ULTRA BLACK EYELINER</p>
+                <p>HERE TO WIN</p>
+                <p>H</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-link">
+            <a href="https://matchperfumes.com/ar/redirect/categories/1245281349">https://matchperfumes.com/ar/redirect/categories/1245281349</a>
+        </div>
+    </footer>
+</body>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+header {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.top-bar span {
+    margin-right: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.search-icon, .account-icon, .cart-icon {
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.cart-icon {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 50%;
+}
+
+main {
+    padding: 20px;
+}
+
+.hero {
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #333;
+}
+
+.hero-content h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.hero-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+footer {
+    padding: 20px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.footer-link a {
+    text-decoration: none;
+    color: #333;
+}
+    <img src="" title="Oud" alt="Oud" width="300px" height="100px"/>
+   
+
+
+    <!-- method can be get or post -->
+    <form action="/server" method="post" name="iyzn">
+       Username <input type="text" name="firstname" placeholder=" Enter Your Username"/>
+       Password <input type="text" name="password" placeholder=" Enter Your Password" />
+        <input type="submit" value="Send" />
+        <label>Gender Perfumes</label>
+        <select name="perfume" id="perfume" multiple>
+            <option value="Men">Men</option>
+            <option value="Women">Women</option>
+
+        </select>
+        </br>
+        <label>Perfumes</label>
+        Men <input type="checkbox" name="Perfume" id="Men"/>
+        Women <input type="checkbox" name="Perfume" id="Women"/>
+    <br/>
+
+    <label>message</label>
+    <textarea cols="20" rows="5" name="message"></textarea>
+    <input type="submit" value="Send Your feedback"/>
+
+
+    </form>
+
+    <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر العطور</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .perfume-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 200px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .category-info {
+            padding: 20px;
+        }
+
+        .category-info h2 {
+            margin: 0;
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .category-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* ألوان مخصصة لكل قسم */
+        .women { border-bottom: 5px solid #ffb6c1; }
+        .men { border-bottom: 5px solid #34495e; }
+        .gifts { border-bottom: 5px solid #f1c40f; }
+        .sets { border-bottom: 5px solid #9b59b6; }
+
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center; color: #444; margin-bottom: 40px;">اكتشف مجموعاتنا</h1>
+
+    <div class="perfume-sections">
+        <div class="category-card women">
+            <div class="category-image">🌸</div>
+            <div class="category-info">
+                <h2>عطور النساء</h2>
+                <p>أناقة وجاذبية تدوم طويلاً</p>
+            </div>
+        </div>
+
+        <div class="category-card men">
+            <div class="category-image">💼</div>
+            <div class="category-info">
+                <h2>عطور الرجال</h2>
+                <p>قوة وفخامة في كل رشة</p>
+            </div>
+        </div>
+
+        <div class="category-card gifts">
+            <div class="category-image">🎁</div>
+            <div class="category-info">
+                <h2>الهدايا</h2>
+                <p>عبر عن حبك بأرقى الهدايا</p>
+            </div>
+        </div>
+
+        <div class="category-card sets">
+            <div class="category-image">✨</div>
+            <div class="category-info">
+                <h2>المجموعات</h2>
+                <p>تشكيلات مختارة بعناية</p>
+            </div>
+        </div>
+    </div><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر عطور - IYZN</title>
+    
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt49vAAAAXVBMVEUAAAAAAAABAAEBAQEBAQICAgIDAwMEBAQFBQUGBgYHBwcICAgJCQkLCwsMDAwNDQ0ODg4PDw8QEBAREBERERESEhITEhIUFBQVFRUWFhYXFxcYGBgZGRkaGhoYGBgODiCBAAABeElEQVR42mP4n7A+MGBgNDOQnBwE7UvHwEwD/N2Z529iV8UvVv8f99W//YmN5wABfNRE3b9w+2HwM6fKzL6zG790jD08AAm8j965bHl989H7X7VvT/w49eA+i+bL/Wb45PDr/8t58+Y5s74R9gYAwK4979eP5v/v5/976t9A///z5/n/b/vFm/b/t/A+b/HjHwBAnAAs8O8P+D0Y/5N9W9b6h+XvX95b/uY5s8/N36h/8n5v5t/v99p7yX/U+wP4H/S+/t5z59r/P7/f/M9t/A8AEPn57f35X3N/0fv/p6b/u+b/+8/53x8AsO/V+V/7X7n/+N///uP///+/+S757+/v///+n+v8A7y/3/zPf39///+//f9v/v/v///83/9v///9383/9///8v7/HwAA8M/5L/n9v///n/v7//+//n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///wAA45z09HwAAAAASUVORK5CYII=">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.05); /* تأثير عمق خفيف */
+        }
+
+        /* تنسيق الهيدر الرئيسي */
+        .site-header {
+            background-color: #fff;
+            padding: 10px 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: fixed; /* يبقى في الأعلى */
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* ليدفع القائمة لليمين */
+            box-sizing: border-box;
+        }
+
+        /* حاوية اللوجو على اليسار */
+        .brand-logo-container {
+            position: absolute; /* وضعه بشكل مطلق للتحكم الدقيق */
+            top: 5px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            text-decoration: none; /* إزالة الخط تحت الرابط */
+            cursor: pointer;
+        }
+
+        /* صورة الحصان */
+        .horse-silhouette {
+            width: 80px; /* التحكم بحجم الحصان */
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            /* استخدمت الصورة كخلفية لدمجها - هذه ليست مثالية ولكنها تعمل للشرح */
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt49vAAAAXVBMVEUAAAAAAAABAAEBAQEBAQICAgIDAwMEBAQFBQUGBgYHBwcICAgJCQkLCwsMDAwNDQ0ODg4PDw8QEBAREBERERESEhITEhIUFBQVFRUWFhYXFxcYGBgZGRkaGhoYGBgODiCBAAABeElEQVR42mP4n7A+MGBgNDOQnBwE7UvHwEwD/N2Z529iV8UvVv8f99W//YmN5wABfNRE3b9w+2HwM6fKzL6zG790jD08AAm8j965bHl989H7X7VvT/w49eA+i+bL/Wb45PDr/8t58+Y5s74R9gYAwK4979eP5v/v5/976t9A///z5/n/b/vFm/b/t/A+b/HjHwBAnAAs8O8P+D0Y/5N9W9b6h+XvX95b/uY5s8/N36h/8n5v5t/v99p7yX/U+wP4H/S+/t5z59r/P7/f/M9t/A8AEPn57f35X3N/0fv/p6b/u+b/+8/53x8AsO/V+V/7X7n/+N///uP///+/+S757+/v///+n+v8A7y/3/zPf39///+//f9v/v/v///83/9v///9383/9///8v7/HwAA8M/5L/n9v///n/v7//+//n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///n///wAA45z09HwAAAAASUVORK5CYII=');
+            margin-right: -15px; /* دمج طفيف للنص مع الحصان */
+            z-index: 1; /* تأكد أنه خلف النص */
+        }
+
+        /* نص iyzn */
+        .brand-text {
+            color: #000;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1;
+            z-index: 2; /* النص للأمام */
+        }
+
+        /* قائمة التنقل */
+        .main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: #000;
+            font-weight: 600;
+        }
+
+        /* أيقونات أخرى (مثل البحث والحساب) */
+        .header-actions {
+            margin-right: 30px;
+            display: flex;
+            gap: 20px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* تأثير إزاحة المحتوى للأسفل */
+        .main-content {
+            margin-top: 100px;
+            padding: 20px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        
+        <a href="#" class="brand-logo-container">
+            <div class="horse-silhouette"></div> <h1 class="brand-text">iyzn</h1> </a>
+
+        <div class="header-actions">
+            <span>🔍</span> <span>👤</span> <span>🛒</span> </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#">عطور رجالية</a></li>
+                <li><a href="#">عطور نسائية</a></li>
+                <li><a href="#">مجموعات الهدايا</a></li>
+                <li><a href="#">عروض خاصة</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main class="main-content">
+        <h2>مرحباً بك في متجر IYZN لعطور الفخامة</h2>
+        <p>هنا سيتم عرض المنتجات والتشكيلات...</p>
+    </main>
+
+    <script>
+        // لغرض التجربة فقط، إذا قمت بفتح هذا في نافذة جديدة، سيقوم بتغيير أيقونة التاب
+        // هذا مجرد إثبات أن أيقونة التاب (Favicon) قد تم دمجها.
+        console.log(' Favicon has been dynamically set to the horse silhouette.');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JYZN | عطور الفخامة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --main-color: #000;
+            --secondary-color: #555;
+            --bg-light: #f8f8f8;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding-top: 80px; /* مسافة للهيدر الثابت */
+        }
+
+        /* --- الهيدر (Header) --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* اللوجو على اليسار */
+        .logo-section {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--main-color);
+        }
+
+        .logo-img {
+            width: 50px; /* الحصان */
+            margin-left: 5px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* القائمة في المنتصف */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--main-color); }
+
+        /* أدوات المستخدم (بحث، دخول، سلة) */
+        .user-tools {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .tool-icon {
+            font-size: 18px;
+            cursor: pointer;
+            position: relative;
+            color: var(--secondary-color);
+            transition: 0.3s;
+        }
+
+        .tool-icon:hover { color: var(--main-color); }
+
+        /* شارة العدد فوق السلة */
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: #ff4d4d;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* --- شريط البحث المخفي --- */
+        .search-bar {
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            padding: 15px;
+            display: none; /* يظهر بالجافاسكريبت */
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .search-bar input {
+            width: 60%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        /* --- نافذة تسجيل الدخول (Modal) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            right: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background: #fff;
+            width: 350px;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn-login {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+    </style>
+    <header>
+        <a href="#" class="logo-section">
+            <img src="https://i.ibb.co/vz6mD8Y/horse-placeholder.png" alt="Logo" class="logo-img"> <span class="logo-text">JYZN</span>
+        </a>
+
+        <nav>
+            <ul>
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#">النساء</a></li>
+                <li><a href="#">الرجال</a></li>
+                <li><a href="#">الهدايا</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-tools">
+            <div class="tool-icon" onclick="toggleSearch()"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div class="tool-icon" onclick="openLogin()"><i class="fa-regular fa-user"></i></div>
+            <div class="tool-icon">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <div id="searchBar" class="search-bar">
+        <input type="text" placeholder="ابحث عن عطرك المفضل...">
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span style="float:left; cursor:pointer" onclick="closeLogin()">×</span>
+            <h3>تسجيل الدخول</h3>
+            <input type="email" placeholder="البريد الإلكتروني">
+            <input type="password" placeholder="كلمة المرور">
+            <button class="btn-login">دخول</button>
+            <p style="font-size: 12px; margin-top: 15px;">ليس لديك حساب؟ <a href="#">سجل الآن</a></p>
+        </div>
+    </div>
+
+    <script>
+        // وظيفة إظهار/إخفاء البحث
+        function toggleSearch() {
+            let sb = document.getElementById("searchBar");
+            sb.style.display = (sb.style.display === "block") ? "none" : "block";
+        }
+
+        // وظائف نافذة الدخول
+        function openLogin() { document.getElementById("loginModal").style.display = "block"; }
+        function closeLogin() { document.getElementById("loginModal").style.display = "none"; }
+        
+        // إغلاق النافذة عند الضغط خارجها
+        window.onclick = function(event) {
+            let modal = document.getElementById("loginModal");
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
+    </script>
+    <video width="100%" height="100%" controls>
+        <source src="name.mp4" type="video/mp4">
+
+
+    </video>
+    <iframe src="index.html" width="100%" height="500px" style="border:none;">
+        <p>your browser does not support iframes.</p>
+    </iframe>
+
+    <header>
+        <nav>
+            <!---menu -->
+        </nav>
+    </header>
+    <main>
+        <section>
+            <article>
+                <p> IYZN is a refined perfume destination where luxury meets identity. Each fragrance is meticulously curated for exceptional longevity, captivating projection, and timeless elegance—designed to embody confidence, sophistication, and a presence that lingers long after you’ve left the room.</p>
+            </article>
+        </section>
+        <section>
+            section2
+        </section>
+        <aside>
+            left menu
+        </aside>
+    </main>
+    <footer>
+        IYZN &copy; 2026 All Right Reserved.
+    </footer>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JYZN | Luxury Perfumes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { margin: 0; font-family: 'Arial', sans-serif; background-color: #fff; }
+
+        .footer-container {
+            padding: 60px 8% 30px;
+            border-top: 1px solid #f0f0f0;
+            color: #000;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        /* Brand & VAT Section */
+        .footer-brand h2 {
+            font-size: 38px;
+            letter-spacing: 10px;
+            margin: 0 0 20px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        .vat-info { font-size: 14px; color: #666; }
+        .vat-number { font-weight: bold; color: #000; margin-top: 5px; }
+
+        /* Links Columns */
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            text-transform: capitalize;
+            font-weight: 600;
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-column ul li {
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #444;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .footer-column ul li:hover { color: #000; text-decoration: underline; }
+
+        /* Contact Section */
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            text-decoration: none;
+            color: #444;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .contact-link:hover { color: #000; }
+
+        /* Bottom Footer Bar */
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid #f5f5f5;
+        }
+
+        .copyright { font-size: 13px; color: #888; }
+
+        /* Payment Icons */
+        .payment-methods { display: flex; gap: 15px; align-items: center; }
+        .payment-methods i { font-size: 22px; color: #333; }
+        .payment-label { font-size: 11px; font-weight: bold; color: #333; border: 1px solid #ddd; padding: 2px 6px; border-radius: 4px; letter-spacing: 1px; }
+
+        /* Social Icons */
+        .social-links { display: flex; gap: 12px; }
+        .social-links a {
+            color: #000;
+            font-size: 16px;
+            text-decoration: none;
+            width: 35px;
+            height: 35px;
+            border: 1px solid #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .social-links a:hover { background: #000; color: #fff; transform: translateY(-3px); }
+
+        /* Back to top button */
+        .scroll-up {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .scroll-up:hover { background: #000; color: #fff; }
+
+        @media (max-width: 768px) {
+            .footer-top { grid-template-columns: 1fr; text-align: left; }
+            .footer-bottom { flex-direction: column-reverse; gap: 25px; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <footer class="footer-container">
+        <div class="scroll-up" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+            <i class="fa-solid fa-arrow-up"></i>
+        </div>
+
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h2>JYZN</h2>
+                <div class="vat-info">
+                    VAT Account Number
+                    <div class="vat-number">310703904200003</div>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Important Links</h3>
+                <ul>
+                    <li>About Us</li>
+                    <li>Privacy Policy</li>
+                    <li>Refund and Cancellation policy</li>
+                    <li>Usage agreement</li>
+                    <li>Our branches</li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact us</h3>
+                <a href="tel:+962795748326" class="contact-link">
+                    <i class="fa-solid fa-phone"></i> +962795748326
+                </a>
+                <a href="mailto:iyznperfume@gmail.com" class="contact-link">
+                    <i class="fa-regular fa-envelope"></i> iyznperfume@gmail.com
+                </a>
+                <img src="https://maroof.sa/Content/images/logo.png" alt="SBC Verified" style="width: 60px; margin-top: 15px; filter: grayscale(1);">
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                Copyright | 2026 JYZN Perfumes
+            </div>
+
+            <div class="payment-methods">
+                <span class="payment-label">MADA</span>
+                <i class="fa-brands fa-cc-visa" title="Visa"></i>
+                <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+                <i class="fa-solid fa-wallet" title="Wallet"></i>
+                <i class="fa-solid fa-money-bill-1-wave" title="Cash on Delivery"></i>
+            </div>
+
+            <div class="social-links">
+                <a href="https://instagram.com/iyznperfume" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://x.com/iyznperfume" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://snapchat.com/iyznperfume" target="_blank"><i class="fa-brands fa-snapchat"></i></a>
+                <a href="https://facebook.com/iyznperfume" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+
+</body>
+</html>
+
+</body>
+
+
+</html>
